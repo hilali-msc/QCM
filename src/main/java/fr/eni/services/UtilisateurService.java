@@ -6,14 +6,6 @@ import fr.eni.bean.Utilisateur;
 import fr.eni.dao.UtilisateurDAO;
 
 public class UtilisateurService {
-
-	public static Utilisateur authenctification(String login, String password){
-		
-		Utilisateur perso = null;		
-		perso = UtilisateurDAO.authentification(login, password);		
-		return perso;
-		
-	}
 	
 	public static Vector<Utilisateur> importerListeStagaire(){
 		

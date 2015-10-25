@@ -3,20 +3,19 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" media="all" href="CSS/flatDesign/style.css"></link>
 	<title>Authentification</title>
 </head>
 <body>
 	<div class="parentCenter">
-		<form action="/GestionQCM/Authentification"  method="post">
+		<form action="j_security_check"  method="post">
 			<table>
 					<tr>
 						<td>Identifiant </td>
-						<td><input id="login" name="login" type="text" value=""/></td>
+						<td><input id="login" name="j_username" type="text" value=""/></td>
 					</tr>
 					<tr>
 						<td>Mot de passe </td>
-						<td><input id="password" name="password" type="password" value=""/></td>
+						<td><input id="password" name="j_password" type="password" value=""/></td>
 					</tr>
 			</table>
 			
