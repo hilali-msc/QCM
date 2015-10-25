@@ -33,4 +33,12 @@ public class UtilisateurService {
 		}
 	}
 	
+	public void delete(Utilisateur stagiaire) throws Exception {		
+		try {
+			UtilisateurDAO.delete(stagiaire);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
 }

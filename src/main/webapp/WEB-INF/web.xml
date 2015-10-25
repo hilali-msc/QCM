@@ -55,7 +55,6 @@
     <servlet-name>MainServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>AjouterStagiaireServlet</display-name>
@@ -65,5 +64,15 @@
   <servlet-mapping>
     <servlet-name>AjouterStagiaireServlet</servlet-name>
     <url-pattern>/ajouterStagiaire</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SuppressionStagiaireServlet</display-name>
+    <servlet-name>SuppressionStagiaireServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.SuppressionStagiaireServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SuppressionStagiaireServlet</servlet-name>
+    <url-pattern>/suppressionStagiaire</url-pattern>
   </servlet-mapping>
 </web-app>

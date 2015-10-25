@@ -28,11 +28,13 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isFormateur;
 		if (request.isUserInRole("2")) {
+			System.out.println("Formateur");
 			isFormateur = true;
 			request.setAttribute("role", "formateur");
 		}else
 		{
 			isFormateur = false;
+			System.out.println("Stagiaire");
 			request.setAttribute("role", "stagiaire");
 		}
 		request.setAttribute("isFormateur", isFormateur);
