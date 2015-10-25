@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<h2>Ajout stagiaires</h2>
-		<form role="form" action="/ajouterStagiaire" method="POST">
+		<form role="form" action="./ajouterStagiaire" method="POST">
 			<div class="form-group">
 				<label for="nom">Nom:</label> <input type="text"
 					class="form-control" id="nom" name="nom">
@@ -29,11 +29,13 @@
 				<label for="promo">Promotion:</label> <select class="form-control"
 					id="promo" name="promo">
 					<c:forEach var="promo" items="${promotions}">
-						<option><c:out value="${promo.libelle}"></c:out>
-						<option>
+						<option value="${promo.id_promo}"><c:out
+								value="${promo.libelle}"></c:out>
+						</option>
 					</c:forEach>
 				</select>
 			</div>
+			<button type="submit" class="btn btn-primary">Ajouter</button>
 		</form>
 	</div>
 </body>

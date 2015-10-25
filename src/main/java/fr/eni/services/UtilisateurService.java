@@ -24,4 +24,13 @@ public class UtilisateurService {
 		
 	}
 	
+	public void insert(Utilisateur stagiaire) throws Exception {
+		
+		try {
+			UtilisateurDAO.insert(stagiaire);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
 }

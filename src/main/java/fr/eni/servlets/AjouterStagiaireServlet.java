@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Promotion;
+import fr.eni.bean.Utilisateur;
 import fr.eni.services.PromotionService;
+import fr.eni.services.UtilisateurService;
 
 /**
  * Servlet implementation class AjouterStagiaireServket
@@ -50,7 +52,25 @@ public class AjouterStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		if (!request.isUserInRole("2")) {
+			response.sendRedirect("/");
+		}
+		UtilisateurService service = new UtilisateurService();
+		Utilisateur stagiaire = new Utilisateur();
+		stagiaire.setNom(request.getParameter("nom"));
+		stagiaire.setPrenom(request.getParameter("prenom"));
+		stagiaire.setEmail(request.getParameter("email"));
+		stagiaire.setId_promo(Integer.parseInt(request.getParameter("promo")));
+		stagiaire.setId_statut(1);
+		stagiaire.setLogin(stagiaire.getPrenom().substring(0, 1).toLowerCase()+stagiaire.getNom().toLowerCase());
+		stagiaire.setPassword(stagiaire.getPrenom().substring(0, 3).toLowerCase());
+		
+		try {
+			service.insert(stagiaire);
+			response.sendRedirect("stagiaires");
+		} catch (Exception e) {
+			doGet(request, response);
+		}
 	}
 
 }

@@ -144,4 +144,30 @@ public class UtilisateurDAO {
 		return perso;
 	}
 	
+	public static void insert(Utilisateur utilisateur) throws SQLException{
+		Connection cnx=null;
+		PreparedStatement rqt=null;
+		try{
+			cnx=ConnectionDB.getConnection();
+			rqt=cnx.prepareStatement("insert into UTILISATEUR "
+					+ "values(?, ?, ?, ?, ?, ?, ?) ");
+			rqt.setString(1, utilisateur.getNom());
+			rqt.setString(2, utilisateur.getPrenom());
+			rqt.setInt(3, utilisateur.getId_promo());
+			rqt.setInt(4, utilisateur.getId_statut());
+			rqt.setBoolean(5, utilisateur.getEst_archive());
+			rqt.setString(6, utilisateur.getPassword());
+			rqt.setString(7, utilisateur.getLogin());
+			rqt.setString(8, utilisateur.getEmail());
+			
+			rqt.executeUpdate();
+		}catch (SQLException e) {
+			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			e.printStackTrace();
+		}finally{
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+	}
+	
 }
