@@ -43,23 +43,4 @@ public class SuppressionStagiaireServlet extends HttpServlet {
 			response.sendRedirect("stagiaires");
 		}
 	}
-    
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		if (!request.isUserInRole("2")) {
-//			response.sendRedirect("/");
-//		}
-//		UtilisateurService service = new UtilisateurService();
-//		Utilisateur stagiaire = new Utilisateur();
-//		stagiaire.setId_promo(Integer.parseInt(request.getParameter("id")));
-//		try {
-//			service.delete(stagiaire);
-//		} catch (Exception e) {
-//		}finally {
-//			response.sendRedirect("stagiaires");
-//		}
-//	}
-
 }

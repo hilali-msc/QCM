@@ -21,11 +21,14 @@
 					value="${stagiaire.nom}"></c:out> Prenom : <c:out
 					value="${stagiaire.prenom}"></c:out> Email : <c:out
 					value="${stagiaire.email}"></c:out> Promo : <c:out
-					value="${stagiaire.id_promo}"></c:out> <c:out
-					value="${stagiaire.id_user }"></c:out> <a
+					value="${stagiaire.id_promo}"></c:out> <a
 				href="<c:url value="suppressionStagiaire">
         						 <c:param name="id" value="${stagiaire.id_user}"/>
        							 </c:url>">Supprimer</a>
+       							 <a
+				href="<c:url value="modifierStagiaire">
+        						 <c:param name="id" value="${stagiaire.id_user}"/>
+       							 </c:url>">Modifier</a>
 			</li>
 		</c:forEach>
 	</ul>
