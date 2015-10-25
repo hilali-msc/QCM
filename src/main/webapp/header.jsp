@@ -32,10 +32,11 @@
 						<li><a href="stagiaires">Stagiaires </a></li>
 					</c:if>
 					<li><a href="tests">Tests</a></li>
-
+					<li><a href="deconnexion">Deconnexion</a></li>
 				</ul>
 			</div>
 		</c:if>
+		
 	</div>
 </nav>
 
