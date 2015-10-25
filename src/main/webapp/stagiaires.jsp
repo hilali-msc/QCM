@@ -13,23 +13,37 @@
 
 <div class="container">
 	<jsp:include page="header.jsp" />
-	<h2>Stagiaires</h2>
-	<a href="./ajouterStagiaire" class="btn btn-info" role="button">Ajouter</a>
+	<h2>
+		Stagiaires <a href="./ajouterStagiaire" class="btn btn-info"
+			role="button"><span class="glyphicon glyphicon-plus"
+			aria-hidden="true"></span>
+	</h2>
+	</a>
 	<ul class="list-group">
 		<c:forEach var="stagiaire" items="${stagiaires}">
-			<li class="list-group-item">Nom : <c:out
-					value="${stagiaire.nom}"></c:out> Prenom : <c:out
-					value="${stagiaire.prenom}"></c:out> Email : <c:out
-					value="${stagiaire.email}"></c:out> Promo : <c:out
-					value="${stagiaire.id_promo}"></c:out> <a
-				href="<c:url value="suppressionStagiaire">
+			<li class="list-group-item"><span class="pull-right"> <a
+					href="<c:url value="suppressionStagiaire">
         						 <c:param name="id" value="${stagiaire.id_user}"/>
-       							 </c:url>">Supprimer</a>
-       							 <a
-				href="<c:url value="modifierStagiaire">
+       							 </c:url>"><span
+						class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> <a
+					href="<c:url value="modifierStagiaire">
         						 <c:param name="id" value="${stagiaire.id_user}"/>
-       							 </c:url>">Modifier</a>
-			</li>
+       							 </c:url>"><span
+						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+			</span>
+
+				<h4 class="list-group-item-heading">
+					<c:out value="${stagiaire.nom}"></c:out>
+					Prenom :
+					<c:out value="${stagiaire.prenom}"></c:out>
+				</h4>
+				<p class="list-group-item-text">
+					<c:out value="${stagiaire.email}"></c:out>
+				</p>
+				<p class="list-group-item-text">
+					Promo :
+					<c:out value="${stagiaire.id_promo}"></c:out>
+				</p></li>
 		</c:forEach>
 	</ul>
 </div>
