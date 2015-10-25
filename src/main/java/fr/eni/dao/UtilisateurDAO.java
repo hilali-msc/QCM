@@ -4,24 +4,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Utilisateur;
 
 public class UtilisateurDAO {
 
-	public static Utilisateur authentification(String login, String password){		
+	public Utilisateur getStagiaires(String login, String password){		
 		
 		Utilisateur perso = new Utilisateur();		
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String req = "SELECT * FROM UTILISATEUR WHERE login = ? AND password = ? ;";		
+		String req = "SELECT * FROM UTILISATEUR WHERE login = ? AND password = ? where statut = 1;";		
 		
 		try {
 			cnx = ConnectionDB.getConnection();			
 		} catch (SQLException e2) {
-			System.out.println("Erreur lors de la récupération de la connection (authentifiaction) : ");
+			System.out.println("Erreur lors de la rï¿½cupï¿½ration de la connection (authentifiaction) : ");
 			e2.printStackTrace();
 		}		
 		
@@ -30,7 +31,7 @@ public class UtilisateurDAO {
 			ps.setString(1, login);
 			ps.setString(2, password);				
 		} catch (SQLException e1) {
-			System.out.println("Erreur lors de la préparation de la requete d'authentification : ");
+			System.out.println("Erreur lors de la prï¿½paration de la requete d'authentification : ");
 			e1.printStackTrace();
 		}		
 		
@@ -55,43 +56,25 @@ public class UtilisateurDAO {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("Erreur lors du cast de la personne à authentifié : ");
+			System.out.println("Erreur lors du cast de la personne ï¿½ authentifiï¿½ : ");
 			e.printStackTrace();
 		}
 						
 		return perso;
 	}
 	
-	public static Vector<Utilisateur> importerListeStagiaire(){
+	public static List<Utilisateur> importerListeStagiaire() throws SQLException{
 		
-		Vector<Utilisateur> listeUtilisateur = new Vector<Utilisateur>();		
+		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();		
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String req = "SELECT * FROM UTILISATEUR WHERE id_statut = 1 ;";		
-		
-		try {
-			cnx = ConnectionDB.getConnection();			
-		} catch (SQLException e2) {
-			System.out.println("Erreur lors de la récupération de la connection (importerListeStagiaire) : ");
-			e2.printStackTrace();
-		}		
-		
-		try {
-			ps = cnx.prepareStatement(req);			
-		} catch (SQLException e1) {
-			System.out.println("Erreur lors de la préparation de la requete de la listede stagiaire : ");
-			e1.printStackTrace();
-		}		
-		
-		try {
+		String req = "SELECT * FROM utilisateur WHERE id_statut = 1 ;";		
+
+			cnx = ConnectionDB.getConnection();				
+			ps = cnx.prepareStatement(req);				
 			rs = ps.executeQuery();	
-		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de stagiaire : ");
-			e.printStackTrace();
-		}
-		
-		try {			
+			
 			while(rs.next()){
 				Utilisateur perso = new Utilisateur();
 				perso.setId_user(rs.getInt("id_user"));
@@ -105,11 +88,6 @@ public class UtilisateurDAO {
 				perso.setEmail(rs.getString("email"));
 				listeUtilisateur.add(perso);
 			}
-			
-		} catch (Exception e) {
-			System.out.println("Erreur lors du cast de la liste de stagiaire : ");
-			e.printStackTrace();
-		}
 		
 		return listeUtilisateur;
 		
@@ -126,7 +104,7 @@ public class UtilisateurDAO {
 		try {
 			cnx = ConnectionDB.getConnection();			
 		} catch (SQLException e2) {
-			System.out.println("Erreur lors de la récupération de la connection (rechercheParIUser) : ");
+			System.out.println("Erreur lors de la rï¿½cupï¿½ration de la connection (rechercheParIUser) : ");
 			e2.printStackTrace();
 		}		
 		
@@ -134,7 +112,7 @@ public class UtilisateurDAO {
 			ps = cnx.prepareStatement(req);
 			ps.setInt(1, id);			
 		} catch (SQLException e1) {
-			System.out.println("Erreur lors de la préparation de la requete de recherche d'utilisateur : ");
+			System.out.println("Erreur lors de la prï¿½paration de la requete de recherche d'utilisateur : ");
 			e1.printStackTrace();
 		}		
 		

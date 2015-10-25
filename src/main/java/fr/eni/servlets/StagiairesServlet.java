@@ -1,10 +1,16 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.eni.bean.Utilisateur;
+import fr.eni.services.UtilisateurService;
 
 /**
  * Servlet implementation class StagiairesServlet
@@ -24,13 +30,17 @@ public class StagiairesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.isUserInRole("2")) {
-			System.out.println("Formateur");
-		}else
-		{
-			System.out.println("Stagiaire");
+		if (!request.isUserInRole("2")) {
+			response.sendRedirect("/");
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+			List<Utilisateur> stagiaires = null;
+			try {
+				stagiaires = UtilisateurService.importerListeStagaire();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("stagiaires", stagiaires);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("stagiaires.jsp");
+			dispatcher.forward(request, response);
 	}
 }

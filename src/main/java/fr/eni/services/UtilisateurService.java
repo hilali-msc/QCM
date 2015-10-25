@@ -1,18 +1,19 @@
 package fr.eni.services;
 
-import java.util.Vector;
+import java.util.List;
 
 import fr.eni.bean.Utilisateur;
 import fr.eni.dao.UtilisateurDAO;
 
 public class UtilisateurService {
 	
-	public static Vector<Utilisateur> importerListeStagaire(){
-		
-		Vector<Utilisateur> listeUtilisateur = new Vector<Utilisateur>();		
-		listeUtilisateur = UtilisateurDAO.importerListeStagiaire();		
-		return listeUtilisateur;
-		
+	public static List<Utilisateur> importerListeStagaire() throws Exception {
+			
+		try {
+			return UtilisateurDAO.importerListeStagiaire();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
 	}
 	
 	public static Utilisateur rechercheParId(int id){

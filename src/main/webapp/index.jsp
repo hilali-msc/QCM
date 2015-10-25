@@ -13,6 +13,6 @@
 <c:if test="${isFormateur}">
  <a href="stagiaires">stagiaires</a>
 </c:if>
- 
+
 </body>
 </html>

@@ -7,5 +7,9 @@
 		userRoleTable="utilisateur" roleNameCol="id_statut" />
 
 
+	<Resource name="jdbc/GestionQCM" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/qcm"
+		username="qcmuser" password="qcmuser" maxActive="5" initialSize="1" />
+
 </Context>
   
