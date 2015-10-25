@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.bean.Statut;
 import fr.eni.bean.Utilisateur;
 
 public class UtilisateurDAO {
@@ -170,4 +171,20 @@ public class UtilisateurDAO {
 		}
 	}
 	
+	public static void delete(Utilisateur utilisateur) throws SQLException{
+		Connection cnx=null;
+		PreparedStatement rqt=null;
+		try{
+			cnx=ConnectionDB.getConnection();
+			rqt=cnx.prepareStatement("delete from UTILISATEUR "
+					+ "where id_user = ? ");
+			rqt.setInt(1, utilisateur.getId_user());
+			rqt.executeUpdate();
+		}catch (SQLException e) {
+			throw new SQLException(e);
+		}finally{
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+	}
 }

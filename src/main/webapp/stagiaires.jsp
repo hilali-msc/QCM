@@ -10,19 +10,23 @@
 <title>Stagiaires</title>
 </head>
 <body>
-<div class="container">
-	<h2>Stagiaires</h2>
-	<a href="./ajouterStagiaire" class="btn btn-info" role="button">Ajouter</a>
-	<ul class="list-group">
-		<c:forEach var="stagiaire" items="${stagiaires}">
-		<li class="list-group-item">
-		Nom : <c:out value="${stagiaire.nom}"></c:out>
-		Prenom : <c:out value="${stagiaire.prenom}"></c:out>
-		Email : <c:out value="${stagiaire.email}"></c:out>
-		Promo : <c:out value="${stagiaire.id_promo}"></c:out>
-		</li>
-		</c:forEach>
-	</ul>
+	<div class="container">
+		<h2>Stagiaires</h2>
+		<a href="./ajouterStagiaire" class="btn btn-info" role="button">Ajouter</a>
+		<ul class="list-group">
+			<c:forEach var="stagiaire" items="${stagiaires}">
+				<li class="list-group-item">Nom : <c:out
+						value="${stagiaire.nom}"></c:out> Prenom : <c:out
+						value="${stagiaire.prenom}"></c:out> Email : <c:out
+						value="${stagiaire.email}"></c:out> Promo : <c:out
+						value="${stagiaire.id_promo}"></c:out> 
+						<c:out value="${stagiaire.id_user }"></c:out>
+						<a href="<c:url value="suppressionStagiaire">
+        						 <c:param name="id" value="${stagiaire.id_user}"/>
+       							 </c:url>">Supprimer</a>
+				</li>
+			</c:forEach>
+		</ul>
 	</div>
 </body>
 </html>
