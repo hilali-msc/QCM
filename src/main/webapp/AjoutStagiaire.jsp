@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div class="container">
+		<jsp:include page="header.jsp" />
 		<h2>Ajout stagiaires</h2>
 		<form role="form" action="./ajouterStagiaire" method="POST">
 			<div class="form-group">
