@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Promotion;
 
 public class PromotionDAO {
 
-	public static Vector<Promotion> importerListe(){
+	public static List<Promotion> importerListe(){
 			
-		Vector<Promotion> listePromo = new Vector<Promotion>();
+		List<Promotion> listePromo = new ArrayList<Promotion>();
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

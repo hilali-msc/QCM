@@ -55,4 +55,15 @@
     <servlet-name>MainServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>AjouterStagiaireServlet</display-name>
+    <servlet-name>AjouterStagiaireServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.AjouterStagiaireServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjouterStagiaireServlet</servlet-name>
+    <url-pattern>/ajouterStagiaire</url-pattern>
+  </servlet-mapping>
 </web-app>

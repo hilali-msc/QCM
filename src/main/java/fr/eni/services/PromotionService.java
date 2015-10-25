@@ -1,18 +1,21 @@
 package fr.eni.services;
 
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.List;
 
 import fr.eni.bean.Promotion;
 import fr.eni.dao.PromotionDAO;
 
 public class PromotionService {
 
-	public static Vector<Promotion> importerListe(){
+	public static List<Promotion> importerListe() throws Exception{
 		
-		Vector<Promotion> listePromo = new Vector<Promotion>();
-		listePromo = PromotionDAO.importerListe();
-		return listePromo;
+		try {
+			return PromotionDAO.importerListe();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+		
 		
 	}
 	
