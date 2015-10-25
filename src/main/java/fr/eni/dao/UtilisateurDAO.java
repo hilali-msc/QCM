@@ -103,27 +103,9 @@ public class UtilisateurDAO {
 
 		try {
 			cnx = ConnectionDB.getConnection();
-		} catch (SQLException e2) {
-			System.out.println("Erreur lors de la r�cup�ration de la connection (rechercheParIUser) : ");
-			e2.printStackTrace();
-		}
-
-		try {
 			ps = cnx.prepareStatement(req);
 			ps.setInt(1, id);
-		} catch (SQLException e1) {
-			System.out.println("Erreur lors de la pr�paration de la requete de recherche d'utilisateur : ");
-			e1.printStackTrace();
-		}
-
-		try {
 			rs = ps.executeQuery();
-		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de recherche d'utilisateur : ");
-			e.printStackTrace();
-		}
-
-		try {
 			if (rs.next()) {
 				perso.setId_user(rs.getInt("id_user"));
 				perso.setNom(rs.getString("nom"));
@@ -188,6 +170,41 @@ public class UtilisateurDAO {
 				rqt.close();
 			if (cnx != null)
 				cnx.close();
+		}
+	}
+	
+	
+	public static void update(Utilisateur utilisateur) throws SQLException{
+		Connection cnx=null;
+		PreparedStatement rqt=null;
+		try{
+			cnx=ConnectionDB.getConnection();
+			rqt=cnx.prepareStatement("update UTILISATEUR "
+					+ "set nom  = ?, "
+					+ "prenom = ?, "
+					+ "id_promo = ?, "
+					+ "id_statut = ?, "
+					+ "est_archive = ?,"
+					+ "password = ?, "
+					+ "login = ?, "
+					+ "email = ? "
+					+ "where id_user = ?");
+			rqt.setString(1, utilisateur.getNom());
+			rqt.setString(2, utilisateur.getPrenom());
+			rqt.setInt(3, utilisateur.getId_promo());
+			rqt.setInt(4, utilisateur.getId_statut());
+			rqt.setBoolean(5, utilisateur.getEst_archive());
+			rqt.setString(6, utilisateur.getPassword());
+			rqt.setString(7, utilisateur.getLogin());
+			rqt.setString(8, utilisateur.getEmail());
+			rqt.setInt(9, utilisateur.getId_user());
+			rqt.executeUpdate();
+		}catch (SQLException e) {
+			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			e.printStackTrace();
+		}finally{
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
 		}
 	}
 }

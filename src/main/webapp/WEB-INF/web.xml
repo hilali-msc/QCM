@@ -85,4 +85,14 @@
     <servlet-name>DeconnexionServlet</servlet-name>
     <url-pattern>/deconnexion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifierStagiaireServlet</display-name>
+    <servlet-name>ModifierStagiaireServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.ModifierStagiaireServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifierStagiaireServlet</servlet-name>
+    <url-pattern>/modifierStagiaire</url-pattern>
+  </servlet-mapping>
 </web-app>

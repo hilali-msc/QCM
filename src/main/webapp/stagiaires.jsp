@@ -25,6 +25,10 @@
 				href="<c:url value="suppressionStagiaire">
         						 <c:param name="id" value="${stagiaire.id_user}"/>
        							 </c:url>">Supprimer</a>
+       							 <a
+				href="<c:url value="modifierStagiaire">
+        						 <c:param name="id" value="${stagiaire.id_user}"/>
+       							 </c:url>">Modifier</a>
 			</li>
 		</c:forEach>
 	</ul>
