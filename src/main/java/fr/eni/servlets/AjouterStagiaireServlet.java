@@ -18,7 +18,7 @@ import fr.eni.services.UtilisateurService;
 /**
  * Servlet implementation class AjouterStagiaireServket
  */
-@WebServlet("/AjouterStagiaireServket")
+
 public class AjouterStagiaireServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,7 +44,7 @@ public class AjouterStagiaireServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("promotions", listPromo);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AjoutStagiaire.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ajoutStagiaire.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -62,6 +62,7 @@ public class AjouterStagiaireServlet extends HttpServlet {
 		stagiaire.setEmail(request.getParameter("email"));
 		stagiaire.setId_promo(Integer.parseInt(request.getParameter("promo")));
 		stagiaire.setId_statut(1);
+		stagiaire.setEst_archive(false);
 		stagiaire.setLogin(stagiaire.getPrenom().substring(0, 1).toLowerCase()+stagiaire.getNom().toLowerCase());
 		stagiaire.setPassword(stagiaire.getPrenom().substring(0, 3).toLowerCase());
 		
