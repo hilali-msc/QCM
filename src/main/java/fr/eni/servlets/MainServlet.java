@@ -1,0 +1,41 @@
+package fr.eni.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class StagiairesServlet
+ */
+public class MainServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MainServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.isUserInRole("2")) {
+			System.out.println("Formateur");
+			request.setAttribute("role", "formateur");
+		}else
+		{
+			System.out.println("Stagiaire");
+			request.setAttribute("role", "stagiaire");
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+}
