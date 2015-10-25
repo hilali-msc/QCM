@@ -12,7 +12,7 @@
 <body>
 <div class="container">
 	<h2>Stagiaires</h2>
-	<a href="ajoutStagiaire" class="btn btn-info" role="button">Ajouter</a>
+	<a href="./ajouterStagiaire" class="btn btn-info" role="button">Ajouter</a>
 	<ul class="list-group">
 		<c:forEach var="stagiaire" items="${stagiaires}">
 		<li class="list-group-item">
