@@ -16,9 +16,9 @@
 	<h2>
 		Stagiaires <a href="./ajouterStagiaire" class="btn btn-info"
 			role="button"><span class="glyphicon glyphicon-plus"
-			aria-hidden="true"></span>
+			aria-hidden="true"></span>	</a>
 	</h2>
-	</a>
+
 	<ul class="list-group">
 		<c:forEach var="stagiaire" items="${stagiaires}">
 			<li class="list-group-item"><span class="pull-right"> <a
@@ -33,9 +33,10 @@
 			</span>
 
 				<h4 class="list-group-item-heading">
-					<c:out value="${stagiaire.nom}"></c:out>
-					Prenom :
 					<c:out value="${stagiaire.prenom}"></c:out>
+					<c:out value="${stagiaire.nom}"></c:out>
+
+					
 				</h4>
 				<p class="list-group-item-text">
 					<c:out value="${stagiaire.email}"></c:out>
