@@ -2,6 +2,7 @@ package fr.eni.services;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Test;
 import fr.eni.dao.TestDAO;
@@ -19,6 +20,15 @@ public class TestService {
 		}
 	}
 
+	public static List<Test> importerListeTests() throws SQLException {
+
+		try {
+			return TestDAO.importerListeTest();
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+	
 	public static void insert(Test test) throws SQLException {
 
 		try {

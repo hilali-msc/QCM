@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Test;
 
@@ -45,7 +46,32 @@ public class TestDAO {
 		return listeTests;
 	}
 	
-	
+	public static List<Test> importerListeTest() throws SQLException {
+
+		List<Test> listeTests = new ArrayList<Test>();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT * FROM test WHERE id_statut = 1 ;";
+
+		cnx = ConnectionDB.getConnection();
+		ps = cnx.prepareStatement(req);
+		rs = ps.executeQuery();
+
+		while (rs.next()) {
+			Test test = new Test();
+			test.setId_test(rs.getInt("id_user"));
+			test.setNom(rs.getString("nom"));
+			test.setDuree_test(rs.getInt("duree_test"));
+			test.setSeuil_en_cours(rs.getInt("seuil_en_cours"));
+			test.setSeuil_acquis(rs.getInt("seuil_acquis"));
+			
+			listeTests.add(test);
+		}
+
+		return listeTests;
+
+	}
 	
 	public static void insert(Test test) throws SQLException{
 		Connection cnx=null;

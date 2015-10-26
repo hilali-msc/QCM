@@ -95,4 +95,14 @@
     <servlet-name>ModifierStagiaireServlet</servlet-name>
     <url-pattern>/modifierStagiaire</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestsServlet</display-name>
+    <servlet-name>TestsServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.TestsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestsServlet</servlet-name>
+    <url-pattern>/tests</url-pattern>
+  </servlet-mapping>
 </web-app>
