@@ -29,6 +29,15 @@ public class TestService {
 		}
 	}
 	
+	public static Test getTestById(int id) throws SQLException {
+
+		try {
+			return TestDAO.getTestsById(id);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+	
 	public void insert(Test test) throws SQLException {
 
 		try {

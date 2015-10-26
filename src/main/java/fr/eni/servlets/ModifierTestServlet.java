@@ -1,6 +1,7 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.bean.Utilisateur;
+import fr.eni.bean.Test;
+import fr.eni.services.TestService;
 
 /**
  * Servlet implementation class ModifierStagiaireServlet
@@ -34,10 +36,14 @@ public class ModifierTestServlet extends HttpServlet {
 			response.sendRedirect("/");
 		}
 		int id = Integer.parseInt(request.getParameter("id"));
-		Utilisateur stagiaire = null;
-		
-		request.setAttribute("stagiaire", stagiaire);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("modifStagiaire.jsp");
+		Test test = null;
+		try {
+			test = TestService.getTestById(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("test", test);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("modifTest.jsp");
 		dispatcher.forward(request, response);
 	}
 

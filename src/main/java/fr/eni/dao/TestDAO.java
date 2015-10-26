@@ -73,6 +73,31 @@ public class TestDAO {
 
 	}
 	
+	
+	public static Test getTestsById(int id) throws SQLException {
+
+		Test test = new Test();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT * FROM test where id_test = ?;";
+		cnx = ConnectionDB.getConnection();
+		ps = cnx.prepareStatement(req);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+
+		if (rs.next()) {
+			test.setId_test(rs.getInt("id_test"));
+			test.setNom(rs.getString("nom"));
+			test.setDuree_test(rs.getInt("duree_test"));
+			test.setSeuil_en_cours(rs.getInt("seuil_EnCours"));
+			test.setSeuil_acquis(rs.getInt("seuil_Acquis"));
+		}
+
+		return test;
+
+	}
+	
 	public static void insert(Test test) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
