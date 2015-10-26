@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Test;
-import fr.eni.bean.Utilisateur;
 import fr.eni.services.TestService;
 
 /**
