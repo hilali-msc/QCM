@@ -60,11 +60,11 @@ public class TestDAO {
 
 		while (rs.next()) {
 			Test test = new Test();
-			test.setId_test(rs.getInt("id_user"));
+			test.setId_test(rs.getInt("id_test"));
 			test.setNom(rs.getString("nom"));
 			test.setDuree_test(rs.getInt("duree_test"));
-			test.setSeuil_en_cours(rs.getInt("seuil_en_cours"));
-			test.setSeuil_acquis(rs.getInt("seuil_acquis"));
+			test.setSeuil_en_cours(rs.getInt("seuil_EnCours"));
+			test.setSeuil_acquis(rs.getInt("seuil_Acquis"));
 			
 			listeTests.add(test);
 		}
@@ -79,7 +79,7 @@ public class TestDAO {
 		ResultSet rs=null;
 		try{
 			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("insert into TEST "
+			rqt=cnx.prepareStatement("insert into TEST(nom, duree_test, seuil_EnCours, seuil_Acquis) "
 					+ "values(?, ?, ?, ?) ");
 			rqt.setString(1, test.getNom());
 			rqt.setInt(2, test.getDuree_test());
@@ -126,8 +126,8 @@ public class TestDAO {
 		try{
 			cnx=ConnectionDB.getConnection();
 			rqt=cnx.prepareStatement("delete from TEST "
-					+ "where nom = ? ");
-			rqt.setString(1, test.getNom());
+					+ "where id_test = ? ");
+			rqt.setInt(1, test.getId_test());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");

@@ -2,26 +2,27 @@ package fr.eni.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.bean.Test;
 import fr.eni.bean.Utilisateur;
+import fr.eni.services.TestService;
 
 /**
- * Servlet implementation class ModifierStagiaireServlet
+ * Servlet implementation class SuppressionTestServlet
  */
-@WebServlet("/ModifierTestServlet")
-public class ModifierTestServlet extends HttpServlet {
+@WebServlet("/suppressionTest")
+public class SuppressionTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModifierTestServlet() {
+    public SuppressionTestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,22 +34,16 @@ public class ModifierTestServlet extends HttpServlet {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
-		int id = Integer.parseInt(request.getParameter("id"));
-		Utilisateur stagiaire = null;
-		
-		request.setAttribute("stagiaire", stagiaire);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("modifStagiaire.jsp");
-		dispatcher.forward(request, response);
+		TestService service = new TestService();
+		Test test = new Test();
+		test.setId_test(Integer.parseInt(request.getParameter("id")));
+		try {
+			service.delete(test);
+		} catch (Exception e) {
+		}finally {
+			response.sendRedirect("tests");
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (!request.isUserInRole("2")) {
-			response.sendRedirect("/");
-		}
-		
-	}
 
 }

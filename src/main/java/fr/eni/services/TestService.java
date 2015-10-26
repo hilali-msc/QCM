@@ -47,7 +47,7 @@ public class TestService {
 		}
 	}
 	
-	public static void delete(Test test) throws SQLException {
+	public void delete(Test test) throws SQLException {
 
 		try {
 			TestDAO.delete(test);
