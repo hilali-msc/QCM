@@ -33,5 +33,42 @@
 			<button type="submit" class="btn btn-primary">Ajouter</button>
 		</form>
 	</div>
+	
+	<!-- -----------------------TEST--------------------------------------------- -->
+	
+	
+	<div class="container">
+	<h2>
+		Stagiaires <a href="./ajouterStagiaire" class="btn btn-info"
+			role="button"><span class="glyphicon glyphicon-plus"
+			aria-hidden="true"></span>	</a>
+	</h2>
+
+	<ul class="list-group">
+		<c:forEach var="theme" items="${themes}">
+			<li class="list-group-item"><span class="pull-right"> <a
+					href="<c:url value="suppressionStagiaire">
+        						 <c:param name="id" value="${theme.id_theme}"/>
+       							 </c:url>"><span
+						class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> <a
+					href="<c:url value="modifierStagiaire">
+        						 <c:param name="id" value="${theme.id_theme}"/>
+       							 </c:url>"><span
+						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+			</span>
+			<h4 class="list-group-item-heading">
+					<c:out value="${theme.libelle}"></c:out>		
+			</h4>
+		</li>
+		</c:forEach>
+	</ul>
+</div>
+
+
+
+<!-- -----------------------TEST--------------------------------------------- -->
+
+
+
 </body>
 </html>

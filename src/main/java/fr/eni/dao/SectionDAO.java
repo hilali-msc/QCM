@@ -23,12 +23,7 @@ public class SectionDAO {
 			rqt.setInt(1, section.getId_test());
 			rqt.setInt(2, section.getId_theme());
 			rs = rqt.executeQuery();
-		} catch (SQLException e) {
-			System.out
-					.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
-			e.printStackTrace();
-		}
-		try {
+
 			while (rs.next()) {
 				section = new Section(rs.getInt("id_test"),
 						rs.getInt("id_theme"), rs.getInt("nb_question"));

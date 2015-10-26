@@ -1,6 +1,7 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Test;
+import fr.eni.bean.Theme;
 import fr.eni.services.TestService;
+import fr.eni.services.ThemeService;
 
 /**
  * Servlet implementation class AjouterTestServlet
@@ -36,6 +39,15 @@ public class AjouterTestServlet extends HttpServlet {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
+		List<Theme> listTheme= null;
+		Theme theme = null;
+		theme.setId_theme(Integer.parseInt(request.getParameter("id")));
+		try {
+			listTheme = ThemeService.getThemesParId(theme);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("themes", listTheme);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ajoutTest.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -48,7 +60,7 @@ public class AjouterTestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
-		}
+		}		
 		TestService service = new TestService();
 		Test test = new Test();
 		test.setNom(request.getParameter("nom"));

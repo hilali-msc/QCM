@@ -115,4 +115,14 @@
     <servlet-name>AjouterTestServlet</servlet-name>
     <url-pattern>/ajouterTest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifierTestServlet</display-name>
+    <servlet-name>ModifierTestServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.ModifierTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifierTestServlet</servlet-name>
+    <url-pattern>/modifierTest</url-pattern>
+  </servlet-mapping>
 </web-app>
