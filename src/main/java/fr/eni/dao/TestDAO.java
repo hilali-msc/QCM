@@ -52,7 +52,7 @@ public class TestDAO {
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String req = "SELECT * FROM test WHERE id_statut = 1 ;";
+		String req = "SELECT * FROM test;";
 
 		cnx = ConnectionDB.getConnection();
 		ps = cnx.prepareStatement(req);

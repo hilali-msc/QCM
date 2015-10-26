@@ -19,7 +19,7 @@ import fr.eni.services.UtilisateurService;
 /**
  * Servlet implementation class ModifierStagiaireServlet
  */
-@WebServlet("/ModifierStagiaireServlet")
+@WebServlet("/ModifierTestServlet")
 public class ModifierTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
