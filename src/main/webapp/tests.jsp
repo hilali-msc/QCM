@@ -7,14 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" media="all"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
-<title>Stagiaires</title>
+<title>Tests</title>
 </head>
 
 
 <div class="container">
 	<jsp:include page="header.jsp" />
 	<h2>
-		Stagiaires <a href="./ajouterStagiaire" class="btn btn-info"
+		Tests <a href="./ajouterTest" class="btn btn-info"
 			role="button"><span class="glyphicon glyphicon-plus"
 			aria-hidden="true"></span>	</a>
 	</h2>

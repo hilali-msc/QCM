@@ -29,7 +29,7 @@ public class TestService {
 		}
 	}
 	
-	public static void insert(Test test) throws SQLException {
+	public void insert(Test test) throws SQLException {
 
 		try {
 			TestDAO.insert(test);

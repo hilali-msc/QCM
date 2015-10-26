@@ -105,4 +105,14 @@
     <servlet-name>TestsServlet</servlet-name>
     <url-pattern>/tests</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjouterTestServlet</display-name>
+    <servlet-name>AjouterTestServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.AjouterTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjouterTestServlet</servlet-name>
+    <url-pattern>/ajouterTest</url-pattern>
+  </servlet-mapping>
 </web-app>

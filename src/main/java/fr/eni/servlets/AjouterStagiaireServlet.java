@@ -72,5 +72,4 @@ public class AjouterStagiaireServlet extends HttpServlet {
 			doGet(request, response);
 		}
 	}
-
 }
