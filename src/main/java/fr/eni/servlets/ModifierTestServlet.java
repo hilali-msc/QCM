@@ -54,7 +54,18 @@ public class ModifierTestServlet extends HttpServlet {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
-		
+		TestService service = new TestService();
+		Test test = new Test();
+		test.setNom(request.getParameter("nom"));
+		test.setDuree_test(Integer.parseInt(request.getParameter("duree_test")));
+		test.setSeuil_en_cours(Integer.parseInt(request.getParameter("seuil_en_cours")));
+		test.setSeuil_acquis(Integer.parseInt(request.getParameter("seuil_acquis")));
+		try {
+			service.update(test);
+			response.sendRedirect("tests");
+		} catch (Exception e) {
+			doGet(request, response);
+		}
 	}
 
 }

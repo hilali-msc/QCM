@@ -13,7 +13,7 @@
 	<div class="container">
 		<jsp:include page="header.jsp" />
 		<h2>Ajout tests</h2>
-		<form role="form" action="./ajouterTest" method="POST">
+		<form role="form" action="./modifierTest" method="POST">
 			<div class="form-group">
 				<label for="nom">Nom:</label> <input type="text"
 					class="form-control" id="nom" name="nom" value="${test.id_test }">

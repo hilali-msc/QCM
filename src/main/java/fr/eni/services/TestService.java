@@ -47,7 +47,7 @@ public class TestService {
 		}
 	}
 	
-	public static void update(Test test) throws SQLException {
+	public void update(Test test) throws SQLException {
 
 		try {
 			TestDAO.update(test);

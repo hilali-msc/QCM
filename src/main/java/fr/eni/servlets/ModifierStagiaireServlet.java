@@ -59,6 +59,22 @@ public class ModifierStagiaireServlet extends HttpServlet {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
+		UtilisateurService service = new UtilisateurService();
+		Utilisateur stagiaire = new Utilisateur();
+		stagiaire.setNom(request.getParameter("nom"));
+		stagiaire.setPrenom(request.getParameter("prenom"));
+		stagiaire.setEmail(request.getParameter("email"));
+		stagiaire.setId_promo(Integer.parseInt(request.getParameter("promo")));
+		stagiaire.setId_statut(1);
+		stagiaire.setEst_archive(false);
+		stagiaire.setLogin(stagiaire.getPrenom().substring(0, 1).toLowerCase()+stagiaire.getNom().toLowerCase());
+		stagiaire.setPassword(stagiaire.getPrenom().substring(0, 3).toLowerCase());
+		
+		try {
+			service.update(stagiaire);
+			response.sendRedirect("stagiaires");
+		} catch (Exception e) {
+			doGet(request, response);
+		}
 	}
-
 }
