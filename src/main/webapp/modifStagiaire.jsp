@@ -13,7 +13,7 @@
 	<div class="container">
 		<jsp:include page="header.jsp" />
 		<h2>Modification stagiaires</h2>
-		<form role="form" action="./ajouterStagiaire" method="POST">
+		<form role="form" action="./modificationStagiaire" method="POST">
 			<div class="form-group">
 				<label for="nom">Nom:</label> <input type="text"
 					class="form-control" id="nom" name="nom" value="${stagiaire.nom }">

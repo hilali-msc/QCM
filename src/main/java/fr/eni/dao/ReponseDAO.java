@@ -10,20 +10,21 @@ import fr.eni.bean.Reponse;
 
 public class ReponseDAO {
 
-	public static ArrayList<Reponse> getReponses(Reponse reponse) throws SQLException{
-		Connection cnx=null;
-		PreparedStatement rqt=null;
-		ResultSet rs=null;
+	public static ArrayList<Reponse> getReponses(int idQuestion) throws SQLException{
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
 		ArrayList<Reponse> listeReponse = new ArrayList<Reponse>();
+		String requete = "SELECT * FROM REPONSE WHERE id_question = ?";
+		
 		try{
-			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("select * "
-					+ "from QUESTION "
-					+ "where id_reponse = ? ");	
-			rqt.setInt(1, reponse.getId_reponse());
-			rs=rqt.executeQuery();
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);	
+			rqt.setInt(1, idQuestion);
+			rs = rqt.executeQuery();
+			
 			while (rs.next()){
-				reponse = new Reponse(
+				Reponse reponse = new Reponse(
 									rs.getInt("id_reponse"),
 									rs.getString("libelle"),
 									rs.getBoolean("est_correct"),
@@ -32,74 +33,88 @@ public class ReponseDAO {
 				listeReponse.add(reponse);				
 			}
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de la liste des réponses : ");
 			e.printStackTrace();
+			
 		}finally{
-			if (rs!=null) rs.close();
-			if (rqt!=null) rqt.close();
-			if (cnx!=null) cnx.close();
+			if (rs != null) rs.close();
+			if (rqt != null) rqt.close();
+			if (cnx != null) cnx.close();
 		}
 		
 		return listeReponse;
 	}
 	
 	public static void insert(Reponse reponse) throws SQLException{
-		Connection cnx=null;
-		PreparedStatement rqt=null;
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		String requete = " INSERT INTO REPONSE(libelle, est_correct, id_question) "
+					   + " VALUES(?, ?, ?) ";
+		
 		try{
-			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("insert into QUESTION "
-					+ "values(?, ?, ?) ");
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);
 			rqt.setString(1, reponse.getLibelle());
 			rqt.setBoolean(2, reponse.isEst_correct());
 			rqt.setInt(3, reponse.getId_question());
 			rqt.executeUpdate();
+			
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete d'insertion d'une réponse : ");
 			e.printStackTrace();
+			
 		}finally{
-			if (rqt!=null) rqt.close();
-			if (cnx!=null) cnx.close();
+			if (rqt != null) rqt.close();
+			if (cnx != null) cnx.close();
 		}
+		
 	}
 	
 	public static void update(Reponse reponse) throws SQLException{
-		Connection cnx=null;
-		PreparedStatement rqt=null;
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		String requete = " UPDATE REPONSE " 
+					   + " SET libelle = ?, est_correct = ?, id_question = ? "
+					   + " WHERE id_reponse = ? ";
+		
 		try{
-			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("update QUESTION "
-					+ "set libelle  = ?, "
-					+ "est_correct = ?, "
-					+ "id_question = ?");
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);
 			rqt.setString(1, reponse.getLibelle());
 			rqt.setBoolean(2, reponse.isEst_correct());
 			rqt.setInt(3, reponse.getId_question());
+			rqt.setInt(4, reponse.getId_reponse());
 			rqt.executeUpdate();
+			
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de MàJ d'une réponse : ");
 			e.printStackTrace();
+			
 		}finally{
-			if (rqt!=null) rqt.close();
-			if (cnx!=null) cnx.close();
+			if (rqt != null) rqt.close();
+			if (cnx != null) cnx.close();
 		}
 	}
 	
 	public static void delete(Reponse reponse) throws SQLException{
-		Connection cnx=null;
-		PreparedStatement rqt=null;
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		String requete = " DELETE FROM REPONSE "
+					   + " WHERE id_reponse = ? ";
+		
 		try{
-			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("delete from QUESTION "
-					+ "where id_reponse = ? ");
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);
 			rqt.setInt(1, reponse.getId_reponse());
 			rqt.executeUpdate();
+			
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de suppression d'une réponse : ");
 			e.printStackTrace();
+			
 		}finally{
-			if (rqt!=null) rqt.close();
-			if (cnx!=null) cnx.close();
+			if (rqt != null) rqt.close();
+			if (cnx != null) cnx.close();
 		}
 	}
 	

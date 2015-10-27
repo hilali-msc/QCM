@@ -10,11 +10,11 @@ import fr.eni.dao.QuestionDAO;
 
 public class QuestionService {
 	
-	public static ArrayList<Question> getQuestions(Question question) throws SQLException {
+	public static ArrayList<Question> getQuestions(int idTheme) throws SQLException {
 
 		try {
 			ArrayList<Question> listQuestions = new ArrayList<Question>();		
-			listQuestions = QuestionDAO.getQuestions(question);
+			listQuestions = QuestionDAO.getQuestions(idTheme);
 			return listQuestions;
 		} catch (Exception e) {
 			throw new SQLException(e);

@@ -125,4 +125,24 @@
     <servlet-name>ModifierTestServlet</servlet-name>
     <url-pattern>/modifierTest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ThemeQuestRepServlet</display-name>
+    <servlet-name>ThemeQuestRepServlet</servlet-name>
+    <servlet-class>fr.eni.servlets.ThemeQuestRepServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThemeQuestRepServlet</servlet-name>
+    <url-pattern>/themeQuestRep</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjouterTheme</display-name>
+    <servlet-name>AjouterTheme</servlet-name>
+    <servlet-class>fr.eni.servlets.AjouterThemeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjouterTheme</servlet-name>
+    <url-pattern>/ajouterTheme</url-pattern>
+  </servlet-mapping>
 </web-app>

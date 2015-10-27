@@ -8,11 +8,11 @@ import fr.eni.dao.ReponseDAO;
 
 public class ReponseService {
 	
-	public static ArrayList<Reponse> getReponses(Reponse reponse) throws SQLException {
+	public static ArrayList<Reponse> getReponses(int idQuestion) throws SQLException {
 
 		try {
 			ArrayList<Reponse> listReponses = new ArrayList<Reponse>();		
-			listReponses = ReponseDAO.getReponses(reponse);
+			listReponses = ReponseDAO.getReponses(idQuestion);
 			return listReponses;
 		} catch (Exception e) {
 			throw new SQLException(e);

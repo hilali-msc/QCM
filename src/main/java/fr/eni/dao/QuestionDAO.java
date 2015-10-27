@@ -10,29 +10,34 @@ import fr.eni.bean.Question;
 
 public class QuestionDAO {
 
-	public static ArrayList<Question> getQuestions(Question question)
-			throws SQLException {
+	public static ArrayList<Question> getQuestions(int idTheme) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
 		ArrayList<Question> listeQuestions = new ArrayList<Question>();
+		String requete = "SELECT * FROM QUESTION WHERE id_theme = ?";
 
 		try {
-			cnx = ConnectionDB.getConnection();
-			rqt = cnx.prepareStatement("select * " + "from QUESTION "
-					+ "where id_theme = ? ");
-			rqt.setInt(1, question.getId_theme());
+			cnx = ConnectionDB.getConnection();			
+			rqt = cnx.prepareStatement(requete);
+			rqt.setInt(1, idTheme);
 			rs = rqt.executeQuery();
+			
 			while (rs.next()) {
-				question = new Question(rs.getInt("id_question"),
-						rs.getInt("id_theme"), rs.getString("enonce"),
-						rs.getBoolean("est_archive"), rs.getString("url_image"));
+				Question question = new Question(
+						rs.getInt("id_question"),
+						rs.getInt("id_theme"), 
+						rs.getString("enonce"),
+						rs.getBoolean("est_archive"), 
+						rs.getString("url_image")
+				);
 				listeQuestions.add(question);
 			}
+			
 		} catch (SQLException e) {
-			System.out
-					.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
 			e.printStackTrace();
+			
 		} finally {
 			if (rs != null)
 				rs.close();
