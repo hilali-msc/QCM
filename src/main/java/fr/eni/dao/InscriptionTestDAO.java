@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Inscription_test;
 
@@ -13,7 +14,7 @@ public class InscriptionTestDAO {
 	/*
 	 * Liste les inscriptions par ID user ou lister toutes les inscriptions
 	 */
-	public static ArrayList<Inscription_test> getTests(Inscription_test inscriptionTest) throws SQLException{
+	public static List<Inscription_test> getTests(Inscription_test inscriptionTest) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		ResultSet rs=null;
@@ -45,5 +46,8 @@ public class InscriptionTestDAO {
 		
 		return listeInscriptionsTests;
 	}
+	
+	
+	
 	
 }
