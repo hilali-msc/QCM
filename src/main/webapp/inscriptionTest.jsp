@@ -24,9 +24,7 @@
 
 				<h4 class="list-group-item-heading">
 					<c:out value="${stagiaire.prenom}"></c:out>
-					<c:out value="${stagiaire.nom}"></c:out>
-
-					
+					<c:out value="${stagiaire.nom}"></c:out>					
 				</h4>
 				<p class="list-group-item-text">
 					<c:out value="${stagiaire.email}"></c:out>
