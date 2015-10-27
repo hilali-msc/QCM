@@ -93,6 +93,38 @@ public class UtilisateurDAO {
 
 	}
 
+	public static List<Utilisateur> importerListeStagiaireParIdPromo(int id) throws SQLException {
+
+		List<Utilisateur> listeUtilisateur = new ArrayList<Utilisateur>();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT * FROM utilisateur WHERE id_promo = ? ;";
+
+		cnx = ConnectionDB.getConnection();
+		ps = cnx.prepareStatement(req);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+
+		while (rs.next()) {
+			Utilisateur perso = new Utilisateur();
+			perso.setId_user(rs.getInt("id_user"));
+			perso.setNom(rs.getString("nom"));
+			perso.setPrenom(rs.getString("prenom"));
+			perso.setId_promo(rs.getInt("id_promo"));
+			perso.setId_statut(rs.getInt("id_statut"));
+			perso.setEst_archive(rs.getBoolean("est_archive"));
+			perso.setPassword(rs.getString("password"));
+			perso.setLogin(rs.getString("login"));
+			perso.setEmail(rs.getString("email"));
+			listeUtilisateur.add(perso);
+		}
+
+		return listeUtilisateur;
+
+	}
+	
+	
 	public static Utilisateur rechercheParId(int id) {
 
 		Utilisateur perso = new Utilisateur();
