@@ -31,4 +31,13 @@ public class InscriptionTestService {
 			throw new SQLException(e);
 		}
 	}
+	
+	public void insert (Inscription_test inscription) throws SQLException
+	{
+		try {
+			InscriptionTestDAO.insert(inscription);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
 }

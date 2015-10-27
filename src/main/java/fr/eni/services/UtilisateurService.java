@@ -15,6 +15,16 @@ public class UtilisateurService {
 			throw new Exception(e);
 		}
 	}
+	
+	public static List<Utilisateur> importerListeStagiaireParIdPromo(int id) throws Exception {
+
+		try {
+			return UtilisateurDAO.importerListeStagiaireParIdPromo(id);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
+	
 
 	public static Utilisateur rechercheParId(int id) throws Exception {
 		try {
