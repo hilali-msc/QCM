@@ -95,24 +95,23 @@ public class ThemeDAO {
 
 	}	
 	
-	public static Theme getThemesParId(Theme theme) throws SQLException{
-		Connection cnx=null;
-		PreparedStatement rqt=null;
-		ResultSet rs=null;
+	public static Theme getThemesParId(int idTheme) throws SQLException{
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
 		Theme unTheme = new Theme();
+		String requete = " SELECT * FROM THEME WHERE id_theme = ?";
+		
 		try{
-			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("select * "
-					+ "from THEME "
-					+ "where id_theme = ? ");	
-			
-			rqt.setInt(1, theme.getId_theme());
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);				
+			rqt.setInt(1, idTheme);
 			rs=rqt.executeQuery();
 			
 			if(rs.next()){				
 				unTheme.setId_theme(rs.getInt("id_theme"));
 				unTheme.setLibelle(rs.getString("libelle"));						
-				return theme;				
+				return unTheme;				
 			}
 			
 		}catch (SQLException e) {

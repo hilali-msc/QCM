@@ -20,6 +20,17 @@ public class QuestionService {
 			throw new SQLException(e);
 		}
 	}
+	
+	public static Question getQuestion(int idQuestion) throws SQLException {
+
+		try {
+			Question uneQuestion = new Question();		
+			uneQuestion = QuestionDAO.getQuestion(idQuestion);
+			return uneQuestion;
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
 
 	public static void insert(Question question) throws SQLException {
 

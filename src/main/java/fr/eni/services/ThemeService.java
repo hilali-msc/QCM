@@ -43,11 +43,11 @@ public class ThemeService {
 		}
 	}
 
-	public static Theme getThemesParId(Theme theme) throws SQLException {
+	public static Theme getThemesParId(int idTheme) throws SQLException {
 
 		try {
 			Theme unTheme = new Theme();
-			unTheme = ThemeDAO.getThemesParId(theme);
+			unTheme = ThemeDAO.getThemesParId(idTheme);
 			return unTheme;
 		} catch (Exception e) {
 			throw new SQLException(e);

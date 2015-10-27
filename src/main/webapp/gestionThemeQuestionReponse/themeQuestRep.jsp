@@ -58,7 +58,7 @@
 	</div>
 
 	<h2>
-		Question <a href="./ajouterQuestion" class="btn btn-info"
+		Question <a href="<c:url value="ajouterQuestion"><c:param name="idTheme" value="${idTheme}"/></c:url>" class="btn btn-info"
 			role="button"><span class="glyphicon glyphicon-plus"
 			aria-hidden="true"></span>	</a>
 	</h2>
@@ -105,9 +105,9 @@
 	</div>
 
 	<h2>
-		Réponse <a href="./ajouterReponse" class="btn btn-info"
-			role="button"><span class="glyphicon glyphicon-plus"
-			aria-hidden="true"></span>	</a>
+		Réponse <a href="<c:url value="ajouterReponse"><c:param name="idQuestion" value="${idQuestion}"/></c:url>" class="btn btn-info"	role="button">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
+		</a>
 	</h2>
 
 	<ul class="list-group">

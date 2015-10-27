@@ -67,6 +67,8 @@ public class ThemeQuestRepServlet extends HttpServlet {
 		request.setAttribute("themes", themes);
 		request.setAttribute("questions", questions);
 		request.setAttribute("reponses", reponses);
+		request.setAttribute("idTheme", idTheme);
+		request.setAttribute("idQuestion", idQuestion);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/gestionThemeQuestionReponse/themeQuestRep.jsp");
 		dispatcher.forward(request, response);

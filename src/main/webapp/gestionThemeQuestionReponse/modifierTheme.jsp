@@ -16,9 +16,9 @@
 		<form role="form" action="./modifiationTheme" method="POST">
 			<div class="form-group">
 				<label for="libelle">Libellé du thème :</label> <input type="text"
-					class="form-control" id="nom" name="nom" value="${theme.nom }">
+					class="form-control" id="libelle" name="libelle" value="${theme.getLibelle}">
 			</div>
-			<button type="submit" class="btn btn-primary">Ajouter</button>
+			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
 	</div>
 </body>

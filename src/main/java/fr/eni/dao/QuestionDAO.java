@@ -35,7 +35,7 @@ public class QuestionDAO {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de la liste des questions : ");
 			e.printStackTrace();
 			
 		} finally {
@@ -48,6 +48,46 @@ public class QuestionDAO {
 		}
 
 		return listeQuestions;
+	}
+	
+	public static Question getQuestion(int idQuestion) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Question uneQuestion = new Question();
+		String requete = "SELECT * FROM QUESTION WHERE id_question = ?";
+
+		try {
+			cnx = ConnectionDB.getConnection();			
+			rqt = cnx.prepareStatement(requete);
+			rqt.setInt(1, idQuestion);
+			rs = rqt.executeQuery();
+			
+			if(rs.next()) {
+				Question question = new Question(
+						rs.getInt("id_question"),
+						rs.getInt("id_theme"), 
+						rs.getString("enonce"),
+						rs.getBoolean("est_archive"), 
+						rs.getString("url_image")
+				);
+				return uneQuestion;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erreur lors de l'execution de la requete de récupération d'une question : ");
+			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (rqt != null)
+				rqt.close();
+			if (cnx != null)
+				cnx.close();
+		}
+
+		return uneQuestion;
 	}
 
 	public static void insert(Question question) throws SQLException {
