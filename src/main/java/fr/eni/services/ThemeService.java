@@ -9,17 +9,6 @@ import fr.eni.dao.ThemeDAO;
 
 public class ThemeService {
 
-	public static ArrayList<Theme> getThemes(Theme theme) throws SQLException {
-
-		try {
-			ArrayList<Theme> Listtest = new ArrayList<Theme>();
-			Listtest = ThemeDAO.getThemes(theme);
-			return Listtest;
-		} catch (Exception e) {
-			throw new SQLException(e);
-		}
-	}
-
 	public static List<Theme> getThemesTest(int id) throws SQLException {
 
 		try {

@@ -45,7 +45,7 @@ public class AjouterTestServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("promotions", listTheme);
+		request.setAttribute("themes", listTheme);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ajoutTest.jsp");
 		dispatcher.forward(request, response);
 	}

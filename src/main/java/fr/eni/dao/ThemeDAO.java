@@ -10,39 +10,6 @@ import java.util.List;
 import fr.eni.bean.Theme;
 
 public class ThemeDAO {
-
-	
-	public static ArrayList<Theme> getThemes(Theme theme) throws SQLException{
-		Connection cnx=null;
-		PreparedStatement rqt=null;
-		ResultSet rs=null;
-		ArrayList<Theme> listeThemes = new ArrayList<Theme>();
-		try{
-			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("select * "
-					+ "from THEME "
-					+ "where libelle like '%" +theme.getLibelle()+ "%' ");	
-//			rqt.setString(1, test.getNom());
-			rs=rqt.executeQuery();
-			while (rs.next()){
-				theme = new Theme(
-									rs.getInt("id_theme"),
-									rs.getString("libelle")
-						);
-				listeThemes.add(theme);				
-			}
-		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste des thèmes : ");
-			e.printStackTrace();
-		}finally{
-			if (rs!=null) rs.close();
-			if (rqt!=null) rqt.close();
-			if (cnx!=null) cnx.close();
-		}
-		
-		return listeThemes;
-	}
-	
 	
 	public static List<Theme> importerListeThemeTest(int id) throws SQLException {
 

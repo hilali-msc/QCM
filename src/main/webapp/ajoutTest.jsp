@@ -33,5 +33,24 @@
 			<button type="submit" class="btn btn-primary">Ajouter</button>
 		</form>
 	</div>
+	<ul class="list-group">
+		<c:forEach var="theme" items="${themes}">
+			<li class="list-group-item"><span class="pull-right"> <a
+					href="<c:url value="ajoutTheme">
+        						 <c:param name="id" value="${theme.id_theme}"/>
+       							 </c:url>"><span
+						class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> <a
+					href="<c:url value="suppressionThemeList">
+        						 <c:param name="id" value="${theme.id_theme}"/>
+       							 </c:url>"><span
+						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+			</span>
+
+				<h4 class="list-group-item-heading">
+					<c:out value="${theme.libelle}"></c:out>	
+				</h4>
+				</li>
+		</c:forEach>
+	</ul>
 </body>
 </html>
