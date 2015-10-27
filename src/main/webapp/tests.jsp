@@ -14,9 +14,8 @@
 <div class="container">
 	<jsp:include page="header.jsp" />
 	<h2>
-		Tests <a href="./ajouterTest" class="btn btn-info"
-			role="button"><span class="glyphicon glyphicon-plus"
-			aria-hidden="true"></span>	</a>
+		Tests <a href="./ajouterTest" class="btn btn-info" role="button"><span
+			class="glyphicon glyphicon-plus" aria-hidden="true"></span> </a>
 	</h2>
 
 	<ul class="list-group">
@@ -29,13 +28,17 @@
 					href="<c:url value="modifierTest">
         						 <c:param name="id" value="${test.id_test}"/>
        							 </c:url>"><span
-						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-			</span>
+						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> <a
+					href="<c:url value="detailTest">
+        						 <c:param name="id" value="${test.id_test}"/>
+       							 </c:url>">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</a></span>
 
 				<h4 class="list-group-item-heading">
 					<c:out value="${test.nom}"></c:out>
 
-					
+
 				</h4>
 				<p class="list-group-item-text">
 					<c:out value="${test.duree_test}"></c:out>

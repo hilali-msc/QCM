@@ -55,20 +55,20 @@
 	</ul>
 	<h2>Liste des themes restants</h2>
 	<ul class="list-group">
-		<c:forEach var="theme" items="${themes}">
+		<c:forEach var="theme" items="${themesRestants}">
 			<li class="list-group-item"><span class="pull-right"> <a
 					href="<c:url value="ajoutTheme">
-        						 <c:param name="id" value="${theme.id_theme}"/>
+        						 <c:param name="id" value="${themesRestants.id_theme}"/>
        							 </c:url>"><span
 						class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> <a
 					href="<c:url value="suppressionThemeList">
-        						 <c:param name="id" value="${theme.id_theme}"/>
+        						 <c:param name="id" value="${themesRestants.id_theme}"/>
        							 </c:url>"><span
 						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
 			</span>
 
 				<h4 class="list-group-item-heading">
-					<c:out value="${theme.libelle}"></c:out>	
+					<c:out value="${themesRestants.libelle}"></c:out>	
 				</h4>
 				</li>
 		</c:forEach>

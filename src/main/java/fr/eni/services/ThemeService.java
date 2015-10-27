@@ -30,6 +30,18 @@ public class ThemeService {
 			throw new SQLException(e);
 		}
 	}
+	
+	
+	public static List<Theme> importerListeThemeRestant(int id) throws SQLException {
+
+		try {
+			List<Theme> Listtest = new ArrayList<Theme>();
+			Listtest = ThemeDAO.importerListeThemeRestant(id);
+			return Listtest;
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
 
 	public static Theme getThemesParId(Theme theme) throws SQLException {
 

@@ -41,16 +41,17 @@ public class ModifierTestServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Test test = null;
 		List<Theme> listThemeParTest = null;
-		List<Theme> listTheme = null;
+		List<Theme>listThemeRestant = null;
 		try {
 			test = TestService.getTestById(id);
-			listTheme = ThemeService.getThemesTest(id);
+			listThemeParTest = ThemeService.getThemesTest(id);
+			listThemeRestant = ThemeService.importerListeThemeRestant(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("test", test);
 		request.setAttribute("themesParTests", listThemeParTest);
-		request.setAttribute("themes", listTheme);
+		request.setAttribute("themesRestants", listThemeRestant);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("modifTest.jsp");
 		dispatcher.forward(request, response);
 	}
