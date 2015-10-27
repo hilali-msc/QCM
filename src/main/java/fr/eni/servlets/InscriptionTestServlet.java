@@ -55,7 +55,7 @@ public class InscriptionTestServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("stagiaires", listUtilisateur);
-		request.setAttribute("promos", listPromo);
+		request.setAttribute("promotions", listPromo);
 		request.setAttribute("tests", listTest);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ajoutStagiaire.jsp");
 		dispatcher.forward(request, response);

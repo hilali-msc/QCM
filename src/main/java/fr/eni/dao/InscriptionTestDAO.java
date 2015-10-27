@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.bean.Inscription_test;
-import fr.eni.bean.Test;
 
 public class InscriptionTestDAO {
 
