@@ -32,7 +32,7 @@ public class ThemeDAO {
 				listeThemes.add(theme);				
 			}
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de la liste des thèmes : ");
 			e.printStackTrace();
 		}finally{
 			if (rs!=null) rs.close();
@@ -63,7 +63,7 @@ public class ThemeDAO {
 				listeThemes.add(theme);				
 			}
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de la récupération d'un thème : ");
 			e.printStackTrace();
 		}finally{
 			if (rs!=null) rs.close();
@@ -79,13 +79,12 @@ public class ThemeDAO {
 		PreparedStatement rqt=null;
 		try{
 			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("insert into THEME "
-					+ "values(?, ?) ");
-			rqt.setInt(1, theme.getId_theme());
-			rqt.setString(2, theme.getLibelle());
+			rqt=cnx.prepareStatement("insert into THEME(libelle) "
+					+ "values(?) ");
+			rqt.setString(1, theme.getLibelle());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete d'insertion d'un thème : ");
 			e.printStackTrace();
 		}finally{
 			if (rqt!=null) rqt.close();
@@ -98,14 +97,13 @@ public class ThemeDAO {
 		PreparedStatement rqt=null;
 		try{
 			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("update THEME "
-					+ "set id_theme  = ?, "
-					+ "libelle = ?,");
-			rqt.setInt(1, theme.getId_theme());
-			rqt.setString(2, theme.getLibelle());
+			rqt=cnx.prepareStatement("UPDATE THEME "
+					+ "SET libelle = ? WHERE id_theme = ?");			
+			rqt.setString(1, theme.getLibelle());
+			rqt.setInt(2, theme.getId_theme());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de mise à jour d'une thème : ");
 			e.printStackTrace();
 		}finally{
 			if (rqt!=null) rqt.close();
@@ -123,7 +121,7 @@ public class ThemeDAO {
 			rqt.setInt(1, theme.getId_theme());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de suppression d'un thème : ");
 			e.printStackTrace();
 		}finally{
 			if (rqt!=null) rqt.close();
