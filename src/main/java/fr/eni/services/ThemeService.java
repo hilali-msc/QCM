@@ -20,12 +20,12 @@ public class ThemeService {
 		}
 	}
 
-	public static List<Theme> getThemesParId(Theme theme) throws SQLException {
+	public static Theme getThemesParId(Theme theme) throws SQLException {
 
 		try {
-			List<Theme> Listtest = new ArrayList<Theme>();		
-			Listtest = ThemeDAO.getThemesParId(theme);
-			return Listtest;
+			Theme unTheme = new Theme();		
+			unTheme = ThemeDAO.getThemesParId(theme);
+			return unTheme;
 		} catch (Exception e) {
 			throw new SQLException(e);
 		}

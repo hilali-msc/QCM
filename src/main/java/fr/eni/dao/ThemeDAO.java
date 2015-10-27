@@ -43,27 +43,28 @@ public class ThemeDAO {
 		return listeThemes;
 	}
 	
-	public static List<Theme> getThemesParId(Theme theme) throws SQLException{
+	public static Theme getThemesParId(Theme theme) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		ResultSet rs=null;
-		ArrayList<Theme> listeThemes = new ArrayList<Theme>();
+		Theme unTheme = new Theme();
 		try{
 			cnx=ConnectionDB.getConnection();
 			rqt=cnx.prepareStatement("select * "
 					+ "from THEME "
 					+ "where id_theme = ? ");	
+			
 			rqt.setInt(1, theme.getId_theme());
 			rs=rqt.executeQuery();
-			while (rs.next()){
-				theme = new Theme(
-									rs.getInt("id_theme"),
-									rs.getString("libelle")
-						);
-				listeThemes.add(theme);				
+			
+			if(rs.next()){				
+				unTheme.setId_theme(rs.getInt("id_theme"));
+				unTheme.setLibelle(rs.getString("libelle"));						
+				return theme;				
 			}
+			
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la récupération d'un thème : ");
+			System.out.println("Erreur lors de l'execution de la requete de récupération d'un thème : ");
 			e.printStackTrace();
 		}finally{
 			if (rs!=null) rs.close();
@@ -71,7 +72,7 @@ public class ThemeDAO {
 			if (cnx!=null) cnx.close();
 		}
 		
-		return listeThemes;
+		return unTheme;
 	}
 	
 	public static void insert(Theme theme) throws SQLException{
