@@ -43,6 +43,61 @@ public class ThemeDAO {
 		return listeThemes;
 	}
 	
+	
+	public static List<Theme> importerListeThemeTest(int id) throws SQLException {
+
+		Theme theme = new Theme();
+		List<Theme> listeTheme = new ArrayList<Theme>();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT theme.libelle, theme.id_theme "
+				+ "FROM theme "
+				+ "inner join section on section.id_theme = theme.id_theme "
+				+ "WHERE section.id_test = ? ;";
+
+		cnx = ConnectionDB.getConnection();
+		ps = cnx.prepareStatement(req);
+		ps.setInt(1, id);
+		rs = ps.executeQuery();
+
+		while (rs.next()) {
+			
+			theme.setId_theme(rs.getInt("id_theme"));
+			theme.setLibelle(rs.getString("libelle"));
+			listeTheme.add(theme);
+		}
+
+		return listeTheme;
+
+	}	
+	
+	
+	public static List<Theme> importerListeTheme() throws SQLException {
+
+		Theme theme = new Theme();
+		List<Theme> listeTheme = new ArrayList<Theme>();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT theme.libelle, theme.id_theme "
+				+ "FROM theme ";
+
+		cnx = ConnectionDB.getConnection();
+		ps = cnx.prepareStatement(req);
+		rs = ps.executeQuery();
+
+		while (rs.next()) {
+			
+			theme.setId_theme(rs.getInt("id_theme"));
+			theme.setLibelle(rs.getString("libelle"));
+			listeTheme.add(theme);
+		}
+
+		return listeTheme;
+
+	}	
+	
 	public static Theme getThemesParId(Theme theme) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;

@@ -12,8 +12,30 @@ public class ThemeService {
 	public static ArrayList<Theme> getThemes(Theme theme) throws SQLException {
 
 		try {
-			ArrayList<Theme> Listtest = new ArrayList<Theme>();		
+			ArrayList<Theme> Listtest = new ArrayList<Theme>();
 			Listtest = ThemeDAO.getThemes(theme);
+			return Listtest;
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+
+	public static List<Theme> getThemesTest(int id) throws SQLException {
+
+		try {
+			List<Theme> Listtest = new ArrayList<Theme>();
+			Listtest = ThemeDAO.importerListeThemeTest(id);
+			return Listtest;
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+
+	public static List<Theme> getListThemes() throws SQLException {
+
+		try {
+			List<Theme> Listtest = new ArrayList<Theme>();
+			Listtest = ThemeDAO.importerListeTheme();
 			return Listtest;
 		} catch (Exception e) {
 			throw new SQLException(e);
@@ -23,14 +45,14 @@ public class ThemeService {
 	public static Theme getThemesParId(Theme theme) throws SQLException {
 
 		try {
-			Theme unTheme = new Theme();		
+			Theme unTheme = new Theme();
 			unTheme = ThemeDAO.getThemesParId(theme);
 			return unTheme;
 		} catch (Exception e) {
 			throw new SQLException(e);
 		}
 	}
-	
+
 	public static void insert(Theme theme) throws SQLException {
 
 		try {
@@ -39,7 +61,7 @@ public class ThemeService {
 			throw new SQLException(e);
 		}
 	}
-	
+
 	public static void update(Theme theme) throws SQLException {
 
 		try {
@@ -48,7 +70,7 @@ public class ThemeService {
 			throw new SQLException(e);
 		}
 	}
-	
+
 	public static void delete(Theme theme) throws SQLException {
 
 		try {
@@ -57,5 +79,5 @@ public class ThemeService {
 			throw new SQLException(e);
 		}
 	}
-	
+
 }

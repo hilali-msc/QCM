@@ -2,6 +2,7 @@ package fr.eni.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Test;
+import fr.eni.bean.Theme;
 import fr.eni.services.TestService;
+import fr.eni.services.ThemeService;
 
 /**
  * Servlet implementation class ModifierStagiaireServlet
@@ -37,12 +40,17 @@ public class ModifierTestServlet extends HttpServlet {
 		}
 		int id = Integer.parseInt(request.getParameter("id"));
 		Test test = null;
+		List<Theme> listThemeParTest = null;
+		List<Theme> listTheme = null;
 		try {
 			test = TestService.getTestById(id);
+			listTheme = ThemeService.getThemesTest(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("test", test);
+		request.setAttribute("themesParTests", listThemeParTest);
+		request.setAttribute("themes", listTheme);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("modifTest.jsp");
 		dispatcher.forward(request, response);
 	}
