@@ -93,17 +93,19 @@ public class QuestionDAO {
 	public static void insert(Question question) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
+		String requete = "INSERT INTO QUESTION(id_theme, enonce, est_archive, urlImage) VALUES(?, ?, ?, ?)";
+		
 		try {
 			cnx = ConnectionDB.getConnection();
-			rqt = cnx.prepareStatement("insert into Question "
-					+ "values(?, ?, ?, ?) ");
+			rqt = cnx.prepareStatement(requete);
 			rqt.setInt(1, question.getId_theme());
 			rqt.setString(2, question.getEnonce());
 			rqt.setBoolean(3, question.isEst_archive());
 			rqt.setString(4, question.getUrl_image());
 			rqt.executeUpdate();
+			
 		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete d'insertion d'une question : ");
 			e.printStackTrace();
 		} finally {
 			if (rqt != null)
@@ -126,7 +128,7 @@ public class QuestionDAO {
 			rqt.setString(4, question.getUrl_image());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de MàJ d'une question : ");
 			e.printStackTrace();
 		}finally {
 			if (rqt != null)
@@ -148,7 +150,7 @@ public class QuestionDAO {
 			rqt.setInt(1, question.getId_question());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de suppr. d'une question : ");
 			e.printStackTrace();
 		}finally {
 			if (rqt != null)

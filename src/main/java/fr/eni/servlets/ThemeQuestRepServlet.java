@@ -35,18 +35,22 @@ public class ThemeQuestRepServlet extends HttpServlet {
 		List<Question> questions = new ArrayList<Question>();
 		List<Reponse> reponses = new ArrayList<Reponse>();		
 		int idTheme = 0;
+		Theme themeSelectionne = new Theme(0, "Thèmes");		
 		int idQuestion = 0;
+		Question questionSelectionne = new Question(0, 0, "Questions", false, "");
 		
 		try {
-			idTheme = (int) request.getAttribute("idTheme");			
+			idTheme = Integer.parseInt(request.getParameter("idTheme"));	
+			themeSelectionne = ThemeService.getThemesParId(idTheme);
 		} catch (Exception e) {
-			// Continuer...
+			themeSelectionne = new Theme(0, "Thèmes");		
 		}
 		
 		try {
-			idQuestion = (int) request.getAttribute("idQuestion");			
+			idQuestion = Integer.parseInt(request.getParameter("idQuestion"));	
+			questionSelectionne = QuestionService.getQuestion(idQuestion);
 		} catch (Exception e) {
-			// Continuer...
+			questionSelectionne = new Question(0, 0, "Questions", false, "");
 		}
 		
 		try {
@@ -65,8 +69,8 @@ public class ThemeQuestRepServlet extends HttpServlet {
 		request.setAttribute("themes", themes);
 		request.setAttribute("questions", questions);
 		request.setAttribute("reponses", reponses);
-		request.setAttribute("idTheme", idTheme);
-		request.setAttribute("idQuestion", idQuestion);
+		request.setAttribute("themeSelect", themeSelectionne);
+		request.setAttribute("questionSelect", questionSelectionne);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/gestionThemeQuestionReponse/themeQuestRep.jsp");
 		dispatcher.forward(request, response);

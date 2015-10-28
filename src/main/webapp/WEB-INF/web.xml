@@ -146,4 +146,24 @@
     <servlet-name>AjouterTheme</servlet-name>
     <url-pattern>/ajouterTheme</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifierTheme</display-name>
+    <servlet-name>ModifierTheme</servlet-name>
+    <servlet-class>fr.eni.servlets.ModifierThemeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifierTheme</servlet-name>
+    <url-pattern>/modifierTheme</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjouterQuestion</display-name>
+    <servlet-name>AjouterQuestion</servlet-name>
+    <servlet-class>fr.eni.servlets.AjouterQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjouterQuestion</servlet-name>
+    <url-pattern>/ajouterQuestion</url-pattern>
+  </servlet-mapping>
 </web-app>

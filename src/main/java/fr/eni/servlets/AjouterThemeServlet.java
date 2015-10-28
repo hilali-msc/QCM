@@ -24,7 +24,7 @@ public class AjouterThemeServlet extends HttpServlet {
 			response.sendRedirect("/");
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/gestionThemeQuestionReponse/ajoutTheme.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/gestionThemeQuestionReponse/ajouterTheme.jsp");
 		dispatcher.forward(request, response);
 	}
 

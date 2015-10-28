@@ -44,6 +44,7 @@ public class ModifierThemeServlet extends HttpServlet {
 		}
 		
 		Theme unTheme = new Theme();
+		unTheme.setId_theme(Integer.parseInt(request.getParameter("id")));
 		unTheme.setLibelle(request.getParameter("libelle"));
 		
 		try {

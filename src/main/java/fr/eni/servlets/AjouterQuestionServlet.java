@@ -17,7 +17,7 @@ import fr.eni.services.ThemeService;
 /**
  * Servlet implementation class AjouterQuestionServlet
  */
-@WebServlet("/AjouterQuestionServlet")
+
 public class AjouterQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class AjouterQuestionServlet extends HttpServlet {
 		}
 		
 		Theme unTheme = new Theme();		
-		int idTheme = (int) request.getAttribute("idTheme");
+		int idTheme = Integer.parseInt(request.getParameter("idTheme"));
 		
 		try {
 			unTheme = ThemeService.getThemesParId(idTheme);
@@ -48,7 +48,7 @@ public class AjouterQuestionServlet extends HttpServlet {
 		Question uneQuestion = new Question();
 		uneQuestion.setEnonce(request.getParameter("enonce"));
 		uneQuestion.setEst_archive(false);
-		uneQuestion.setId_theme(Integer.parseInt("idTheme"));
+		uneQuestion.setId_theme(Integer.parseInt(request.getParameter("idTheme")));
 		uneQuestion.setUrl_image(request.getParameter("urlImage"));		
 		
 		try {

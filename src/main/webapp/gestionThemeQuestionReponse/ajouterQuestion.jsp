@@ -14,10 +14,10 @@
 		<jsp:include page="../header.jsp" />
 		<h2>Ajout d'une question</h2>
 		
-		<form role="form" action="./ajouterQuestion" method="POST">
+		<form role="form" action="/qcm/ajouterQuestion" method="POST">
 			<div class="form-group">
 				<input type="hidden" value="${theme.id_theme}" id="idTheme" name="idTheme"/>
-				<label><c:out value="${theme.getLibelle}"></c:out></label>
+				<label><c:out value="${theme.libelle}"></c:out></label>
 			</div>
 			
 			<div class="form-group">

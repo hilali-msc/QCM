@@ -13,10 +13,11 @@
 	<div class="container">
 		<jsp:include page="../header.jsp" />
 		<h2>Modification d'un thème</h2>
-		<form role="form" action="./modifiationTheme" method="POST">
+		<form role="form" action="/qcm/modifierTheme" method="POST">
+			<input type="hidden" id="id" name="id" value="${theme.id_theme}" />
 			<div class="form-group">
 				<label for="libelle">Libellé du thème :</label> <input type="text"
-					class="form-control" id="libelle" name="libelle" value="${theme.getLibelle}">
+					class="form-control" id="libelle" name="libelle" value="${theme.libelle}">
 			</div>
 			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
