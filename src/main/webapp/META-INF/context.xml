@@ -1,15 +1,23 @@
 
 <Context>
+
 	<Realm className="org.apache.catalina.realm.JDBCRealm"
 		driverName="com.mysql.jdbc.Driver"
 		connectionURL="jdbc:mysql://localhost/qcm?user=qcmuser&amp;password=qcmuser"
-		userTable="utilisateur" userNameCol="login" userCredCol="password"
-		userRoleTable="utilisateur" roleNameCol="id_statut" />
+		userTable="utilisateur" 
+		userNameCol="login" 
+		userCredCol="password"
+		userRoleTable="utilisateur" 
+		roleNameCol="id_statut" />
 
-
-	<Resource name="jdbc/GestionQCM" type="javax.sql.DataSource"
-		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/qcm"
-		username="qcmuser" password="qcmuser" maxActive="5" initialSize="1" />
+	<Resource name="jdbc/GestionQCM" 
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" 
+		url="jdbc:mysql://localhost/qcm"
+		username="qcmuser" 
+		password="qcmuser" 
+		maxActive="10" 
+		initialSize="5" />
 
 </Context>
   
