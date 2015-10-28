@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Question;
 import fr.eni.bean.Reponse;
-import fr.eni.bean.Theme;
 import fr.eni.services.QuestionService;
 import fr.eni.services.ReponseService;
-import fr.eni.services.ThemeService;
 
 /**
  * Servlet implementation class AjouterReponseServlet

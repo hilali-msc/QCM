@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.bean.Question;
 import fr.eni.bean.Reponse;
 import fr.eni.bean.Theme;
-import fr.eni.bean.Utilisateur;
 import fr.eni.services.QuestionService;
 import fr.eni.services.ReponseService;
 import fr.eni.services.ThemeService;
-import fr.eni.services.UtilisateurService;
 
 /**
  * Servlet implementation class ThemeQuestRepServlet

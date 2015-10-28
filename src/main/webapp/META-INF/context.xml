@@ -1,34 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context>
 
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
-	
-    <Resource 
-      	name="jdbc/GestionQCM" 
-      	type="javax.sql.DataSource" 
-      	
-      	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-      	url="jdbc:sqlserver://localhost;databasename=QCM"
-      	username="sa"
-      	password="Pa$$w0rd"
-      	
-      	maxActive="5"
-		initialSize="1"
-    />
+<Context>
+	<Realm className="org.apache.catalina.realm.JDBCRealm"
+		driverName="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://localhost/qcm?user=qcmuser&amp;password=qcmuser"
+		userTable="utilisateur" userNameCol="login" userCredCol="password"
+		userRoleTable="utilisateur" roleNameCol="id_statut" />
+
+
+	<Resource name="jdbc/GestionQCM" type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/qcm"
+		username="qcmuser" password="qcmuser" maxActive="5" initialSize="1" />
 
 </Context>
-
-<!-- <Context> -->
-<!-- 	<Realm className="org.apache.catalina.realm.JDBCRealm" -->
-<!-- 		driverName="com.mysql.jdbc.Driver" -->
-<!-- 		connectionURL="jdbc:mysql://localhost/qcm?user=qcmuser&amp;password=qcmuser" -->
-<!-- 		userTable="utilisateur" userNameCol="login" userCredCol="password" -->
-<!-- 		userRoleTable="utilisateur" roleNameCol="id_statut" /> -->
-
-
-<!-- 	<Resource name="jdbc/GestionQCM" type="javax.sql.DataSource" -->
-<!-- 		driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/qcm" -->
-<!-- 		username="qcmuser" password="qcmuser" maxActive="5" initialSize="1" /> -->
-
-<!-- </Context> -->
   
