@@ -32,7 +32,6 @@
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
-
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
@@ -169,6 +168,16 @@
 	<servlet-mapping>
 		<servlet-name>AjouterQuestion</servlet-name>
 		<url-pattern>/ajouterQuestion</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ModifierQuestion</display-name>
+		<servlet-name>ModifierQuestion</servlet-name>
+		<servlet-class>fr.eni.servlets.ModifierQuestionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifierQuestion</servlet-name>
+		<url-pattern>/modifierQuestion</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>WebService</servlet-name>

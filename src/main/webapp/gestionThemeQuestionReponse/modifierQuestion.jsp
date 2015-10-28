@@ -13,35 +13,29 @@
 	<div class="container">
 		<jsp:include page="../header.jsp" />
 		<h2>Modification d'une question</h2>
-		<form role="form" action="./modifiationQuestion" method="POST">
+		<form role="form" action="/qcm/modifierQuestion" method="POST">
 			
-			<input type="hidden" value="${question.getId_question}" id="idQuestion" name="idQuestion"/>
+			<input type="hidden" value="${question.id_question}" id="idQuestion" name="idQuestion"/>
 			
-			<div class="dropup">
-				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    Thèmes
-				    <span class="caret"></span>
-				</button>
-				<select id="listeTheme" name="listeTheme" />
+			<div class="form-group">
+				<label for="theme">Thèmes :</label> 
+				<select class="form-control" id="theme" name="theme">
 					<c:forEach var="theme" items="${themes}">
-						<c:if test="${theme.getid_theme} == ${quesion.getId_theme}">
-							<option selected id="theme.id_theme"><c:out value="${theme.getLibelle}"></c:out><option/>								
-						</c:if>
-						<c:if test="${theme.getid_theme} != ${idTheme}">
-							<option id="theme.id_theme"><c:out value="${theme.getLibelle}"></c:out><option/>								
-						</c:if>
+						<option <c:if test="${question.id_theme == theme.id_theme }"><c:out value="selected"/></c:if> value="${theme.id_theme}">
+							<c:out value="${theme.libelle}"></c:out>
+						</option>
 					</c:forEach>
-				</select>		  		  
+				</select>
 			</div>
 		
 			<div class="form-group">
 				<label for="enonce">Enoncé de la question :</label> 
-				<input type="text" class="form-control" id="enonce" name="enonce" value="${question.getEnonce}">
+				<input type="text" class="form-control" id="enonce" name="enonce" value="${question.enonce}">
 			</div>
 			
 			<div class="form-group">
 				<label for="urlImage">URL de l'image :</label> 
-				<input type="text" class="form-control" id="urlImage" name="urlImage" value="${question.getUrl_image}">
+				<input type="text" class="form-control" id="urlImage" name="urlImage" value="${question.url_image}">
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Modifier</button>

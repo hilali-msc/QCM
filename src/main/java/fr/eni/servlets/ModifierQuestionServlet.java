@@ -55,7 +55,7 @@ public class ModifierQuestionServlet extends HttpServlet {
 		
 		Question uneQuestion = new Question();
 		uneQuestion.setEnonce(request.getParameter("enonce"));
-		uneQuestion.setId_theme(Integer.parseInt(request.getParameter("listeTheme")));
+		uneQuestion.setId_theme(Integer.parseInt(request.getParameter("theme")));
 		uneQuestion.setId_question(Integer.parseInt(request.getParameter("idQuestion")));
 		uneQuestion.setUrl_image(request.getParameter("urlImage"));
 		uneQuestion.setEst_archive(false);

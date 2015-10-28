@@ -81,7 +81,7 @@
 
 				<p class="list-group-item-text">
 					<c:out value="${question.enonce}"></c:out>
-					<img src="<c:url value="${question.urlImage}"></c:url>"></img>
+					<img src="<c:url value="${question.url_image}"></c:url>"></img>
 				</p></li>
 		</c:forEach>
 	</ul>
@@ -127,7 +127,7 @@
 			</span>
 
 				<p class="list-group-item-text">
-					<c:out value="${reponse.getLibelle}"></c:out>
+					<c:out value="${reponse.libelle}"></c:out>
 				</p>
 
 				<p class="list-group-item-text">

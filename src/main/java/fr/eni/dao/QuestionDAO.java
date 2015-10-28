@@ -29,7 +29,7 @@ public class QuestionDAO {
 						rs.getInt("id_theme"), 
 						rs.getString("enonce"),
 						rs.getBoolean("est_archive"), 
-						rs.getString("url_image")
+						rs.getString("urlImage")
 				);
 				listeQuestions.add(question);
 			}
@@ -64,12 +64,12 @@ public class QuestionDAO {
 			rs = rqt.executeQuery();
 			
 			if(rs.next()) {
-				Question question = new Question(
+				uneQuestion = new Question(
 						rs.getInt("id_question"),
 						rs.getInt("id_theme"), 
 						rs.getString("enonce"),
 						rs.getBoolean("est_archive"), 
-						rs.getString("url_image")
+						rs.getString("urlImage")
 				);
 				return uneQuestion;
 			}
@@ -118,15 +118,19 @@ public class QuestionDAO {
 	public static void update(Question question) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
+		String requete = " UPDATE QUESTION SET id_theme = ?, enonce = ?, est_archive = ?, urlImage = ? "
+					   + " WHERE id_question = ?";
+		
 		try {
 			cnx = ConnectionDB.getConnection();
-			rqt = cnx.prepareStatement("update QUESTION " + "set id_theme  = ?, "
-					+ "enonce = ?, " + "est_archive = ? " + "url_image = ? ");
+			rqt = cnx.prepareStatement(requete);
 			rqt.setInt(1, question.getId_theme());
 			rqt.setString(2, question.getEnonce());
 			rqt.setBoolean(3, question.isEst_archive());
 			rqt.setString(4, question.getUrl_image());
+			rqt.setInt(5, question.getId_question());
 			rqt.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de MàJ d'une question : ");
 			e.printStackTrace();
