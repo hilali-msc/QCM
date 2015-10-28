@@ -30,7 +30,8 @@ public class TestDAO {
 									rs.getString("nom"),
 									rs.getInt("duree_test"),
 									rs.getInt("seuil_en_cours"),
-									rs.getInt("seuil_acquis")
+									rs.getInt("seuil_acquis"),
+									rs.getBoolean("est_archive")
 						);
 				listeTests.add(test);				
 			}
@@ -52,7 +53,7 @@ public class TestDAO {
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String req = "SELECT * FROM test;";
+		String req = "SELECT * FROM test WHERE est_archive = 0;";
 
 		cnx = ConnectionDB.getConnection();
 		ps = cnx.prepareStatement(req);
@@ -128,13 +129,15 @@ public class TestDAO {
 			cnx=ConnectionDB.getConnection();
 			rqt=cnx.prepareStatement("update TEST "
 					+ "set nom  = ?, "
-					+ "duree_test = ?,"
-					+ "seuil_en_cours = ?,"
-					+ "seuil_acquis = ? ");
+					+ "duree_test = ?, "
+					+ "seuil_EnCours = ?, "
+					+ "seuil_Acquis = ? "
+					+ "where id_test = ? ");
 			rqt.setString(1, test.getNom());
 			rqt.setInt(2, test.getDuree_test());
 			rqt.setInt(3, test.getSeuil_en_cours());
 			rqt.setInt(4, test.getSeuil_acquis());
+			rqt.setInt(5, test.getId_test());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
@@ -150,9 +153,11 @@ public class TestDAO {
 		PreparedStatement rqt=null;
 		try{
 			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("delete from TEST "
+			rqt=cnx.prepareStatement("update TEST "
+					+ "set est_archive  = ? "
 					+ "where id_test = ? ");
-			rqt.setInt(1, test.getId_test());
+			rqt.setBoolean(1, test.getEst_archive());
+			rqt.setInt(2, test.getId_test());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");

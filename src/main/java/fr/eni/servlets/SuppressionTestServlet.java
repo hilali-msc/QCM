@@ -35,6 +35,7 @@ public class SuppressionTestServlet extends HttpServlet {
 		}
 		TestService service = new TestService();
 		Test test = new Test();
+		test.setEst_archive(true);
 		test.setId_test(Integer.parseInt(request.getParameter("id")));
 		try {
 			service.delete(test);

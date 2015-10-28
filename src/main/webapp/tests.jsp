@@ -41,7 +41,8 @@
 
 				</h4>
 				<p class="list-group-item-text">
-					<c:out value="${test.duree_test}"></c:out>
+					Duree :
+					<c:out value="${test.duree_test}"></c:out>h
 				</p>
 				<p class="list-group-item-text">
 					Seuil en cours :

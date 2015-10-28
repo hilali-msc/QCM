@@ -21,7 +21,7 @@ public class ThemeDAO {
 		String req = "SELECT theme.libelle, theme.id_theme "
 				+ "FROM theme "
 				+ "inner join section on section.id_theme = theme.id_theme "
-				+ "WHERE section.id_test = ? ;";
+				+ "WHERE section.id_test = ? ";
 
 		cnx = ConnectionDB.getConnection();
 		ps = cnx.prepareStatement(req);

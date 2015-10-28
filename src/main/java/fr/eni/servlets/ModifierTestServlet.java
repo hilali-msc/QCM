@@ -65,6 +65,7 @@ public class ModifierTestServlet extends HttpServlet {
 		}
 		TestService service = new TestService();
 		Test test = new Test();
+		test.setId_test(Integer.parseInt(request.getParameter("id")));
 		test.setNom(request.getParameter("nom"));
 		test.setDuree_test(Integer.parseInt(request.getParameter("duree_test")));
 		test.setSeuil_en_cours(Integer.parseInt(request.getParameter("seuil_en_cours")));

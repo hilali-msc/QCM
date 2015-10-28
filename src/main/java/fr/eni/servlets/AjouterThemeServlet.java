@@ -15,7 +15,7 @@ import fr.eni.services.ThemeService;
 /**
  * Servlet implementation class AjouterThemeServlet
  */
-@WebServlet("/AjouterThemeServlet")
+@WebServlet("/ajoutTheme")
 public class AjouterThemeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

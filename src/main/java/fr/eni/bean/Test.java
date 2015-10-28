@@ -7,6 +7,7 @@ public class Test {
 	private int duree_test;
 	private int seuil_en_cours;
 	private int seuil_acquis;
+	private Boolean est_archive;
 	
 	public Test()
 	{
@@ -14,13 +15,14 @@ public class Test {
 	}
 	
 	public Test(int id_test, String nom, int duree_test, int seuil_en_cours,
-			int seuil_acquis) {
+			int seuil_acquis, Boolean est_archive) {
 		super();
 		this.id_test = id_test;
 		this.nom = nom;
 		this.duree_test = duree_test;
 		this.seuil_en_cours = seuil_en_cours;
 		this.seuil_acquis = seuil_acquis;
+		this.est_archive = est_archive;
 	}
 	public int getId_test() {
 		return id_test;
@@ -51,6 +53,14 @@ public class Test {
 	}
 	public void setSeuil_acquis(int seuil_acquis) {
 		this.seuil_acquis = seuil_acquis;
+	}
+
+	public Boolean getEst_archive() {
+		return est_archive;
+	}
+
+	public void setEst_archive(Boolean est_archive) {
+		this.est_archive = est_archive;
 	}
 	
 	
