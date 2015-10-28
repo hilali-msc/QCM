@@ -30,9 +30,10 @@
 				<ul class="nav navbar-nav">
 					<c:if test="${isFormateur}">
 						<li><a href="stagiaires">Stagiaires </a></li>
-					</c:if>
-					<li><a href="tests">Tests</a></li>
-					<li><a href="inscriptionsTests">Inscriptions tests</a></li>
+						<li><a href="tests">Tests</a></li>
+						<li><a href="inscriptionsTests">Inscriptions tests</a></li>
+						<li><a href="themeQuestRep">Gestion du référenciel</a></li>
+					</c:if>					
 					<li><a href="deconnexion">Deconnexion</a></li>
 				</ul>
 			</div>
