@@ -39,10 +39,10 @@ public class TestService {
 		}
 	}
 	
-	public void insert(Test test) throws SQLException {
+	public Integer insert(Test test) throws SQLException {
 
 		try {
-			TestDAO.insert(test);
+			return TestDAO.insert(test);
 		} catch (Exception e) {
 			throw new SQLException(e);
 		}

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,27 +100,35 @@ public class TestDAO {
 
 	}
 	
-	public static void insert(Test test) throws SQLException{
+	public static Integer insert(Test test) throws SQLException{
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		ResultSet rs=null;
+		Integer testId = null;
 		try{
 			cnx=ConnectionDB.getConnection();
 			rqt=cnx.prepareStatement("insert into TEST(nom, duree_test, seuil_EnCours, seuil_Acquis) "
-					+ "values(?, ?, ?, ?) ");
+					+ "values(?, ?, ?, ?) " ,Statement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, test.getNom());
 			rqt.setInt(2, test.getDuree_test());
 			rqt.setInt(3, test.getSeuil_en_cours());
 			rqt.setInt(4, test.getSeuil_acquis());
 			rqt.executeUpdate();
+			 rs =rqt.getGeneratedKeys();
+			 if(rs.next()){
+				 testId = rs.getInt(1);
+			 }
 		}catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
 			e.printStackTrace();
+			
 		}finally{
 			if (rs!=null) rs.close();
 			if (rqt!=null) rqt.close();
 			if (cnx!=null) cnx.close();
+		
 		}
+		return testId;
 	}
 	
 	public static void update(Test test) throws SQLException{

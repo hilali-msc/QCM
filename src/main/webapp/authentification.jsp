@@ -14,11 +14,11 @@
 		<form action="j_security_check" method="post">
 			<div class="form-group">
 				<label for="nom">Identifiant:</label> <input type="text"
-					class="form-control" id="nom" name="j_username">
+					class="form-control" id="nom" name="j_username" value="malheinc">
 			</div>
 			<div class="form-group">
 				<label for="password">Mot de passe :</label> <input type="password"
-					class="form-control" id="password" name=j_password>
+					class="form-control" id="password" name=j_password value="mat">
 			</div>
 
 			<button type="submit" class="btn btn-primary">Se connecter</button>

@@ -32,6 +32,7 @@
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
