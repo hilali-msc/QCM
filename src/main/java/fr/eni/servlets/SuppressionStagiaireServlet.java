@@ -36,6 +36,7 @@ public class SuppressionStagiaireServlet extends HttpServlet {
 		UtilisateurService service = new UtilisateurService();
 		Utilisateur stagiaire = new Utilisateur();
 		stagiaire.setId_user(Integer.parseInt(request.getParameter("id")));
+		stagiaire.setEst_archive(true);
 		try {
 			service.delete(stagiaire);
 		} catch (Exception e) {

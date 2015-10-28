@@ -69,7 +69,7 @@ public class UtilisateurDAO {
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String req = "SELECT * FROM utilisateur WHERE id_statut = 1 ;";
+		String req = "SELECT * FROM utilisateur WHERE id_statut = 1 AND est_archive = 0;";
 
 		cnx = ConnectionDB.getConnection();
 		ps = cnx.prepareStatement(req);
@@ -192,8 +192,11 @@ public class UtilisateurDAO {
 		PreparedStatement rqt = null;
 		try {
 			cnx = ConnectionDB.getConnection();
-			rqt = cnx.prepareStatement("delete from UTILISATEUR " + "where id_user = ? ");
-			rqt.setInt(1, utilisateur.getId_user());
+			rqt = cnx.prepareStatement("update UTILISATEUR "
+					+ "set est_archive = ? "
+					+ "where id_user = ? ");
+			rqt.setBoolean(1, utilisateur.getEst_archive());
+			rqt.setInt(2, utilisateur.getId_user());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
 			throw new SQLException(e);

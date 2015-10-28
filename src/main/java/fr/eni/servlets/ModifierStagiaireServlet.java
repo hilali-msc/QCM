@@ -61,7 +61,7 @@ public class ModifierStagiaireServlet extends HttpServlet {
 		}
 		UtilisateurService service = new UtilisateurService();		
 		Utilisateur stagiaire = new Utilisateur();
-		stagiaire.setId_user((int) request.getAttribute("id"));
+		stagiaire.setId_user(Integer.parseInt(request.getParameter("id")));
 		stagiaire.setNom(request.getParameter("nom"));
 		stagiaire.setPrenom(request.getParameter("prenom"));
 		stagiaire.setEmail(request.getParameter("email"));

@@ -12,7 +12,7 @@
 	<div class="container">
 		<jsp:include page="header.jsp" />
 		<h2>Modification stagiaires</h2>
-		<form role="form" action="./modificationStagiaire" method="POST">
+		<form role="form" action="./modifierStagiaire" method="POST">
 			<input type="hidden" value="${stagiaire.id_user}" id="id" name="id"/>
 			<div class="form-group">
 				<label for="nom">Nom:</label> <input type="text"
@@ -43,7 +43,7 @@
 					</c:forEach>
 				</select>
 			</div>
-			<button type="submit" class="btn btn-primary">Ajouter</button>
+			<button type="submit" class="btn btn-primary">Modifier</button>
 		</form>
 	</div>
 </body>
