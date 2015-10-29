@@ -15,9 +15,7 @@
 		driverClassName="com.mysql.jdbc.Driver" 
 		url="jdbc:mysql://localhost/qcm"
 		username="qcmuser" 
-		password="qcmuser" 
-		maxActive="20" 
-		initialSize="5" />
+		password="qcmuser"  />
 
 </Context>
   

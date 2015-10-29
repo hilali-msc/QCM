@@ -80,5 +80,4 @@ public class Inscription_test {
 		this.position_question = position_question;
 	}
 	
-	
 }

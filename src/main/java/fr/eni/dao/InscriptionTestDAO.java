@@ -112,5 +112,43 @@ public class InscriptionTestDAO {
 		
 		return listeInscriptionsTests;
 	}
+
+
+	public static Inscription_test getInscriptionTestByUId(int idInscription) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Inscription_test inscription = new Inscription_test();
+		
+		try{
+			cnx=ConnectionDB.getConnection();
+			rqt=cnx.prepareStatement("select * "
+					+ "from INSCRIPTION_TEST "
+					+ "where id_inscription = ? ");	
+			
+			rqt.setInt(1, idInscription);
+			rs=rqt.executeQuery();
+			
+			if (rs.next()){
+				inscription = new Inscription_test(
+					rs.getInt("id_inscription"),
+					rs.getInt("id_test"),
+					rs.getDate("date_inscription"),
+					rs.getInt("id_user"),
+					rs.getDate("dateDebutTest"),
+					rs.getInt("tempsRestant"),
+					rs.getInt("nbIncident"),
+					rs.getInt("positionQuestion")
+				);
+				return inscription;
+			}
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		
+		return inscription;
+	}
 	
 }

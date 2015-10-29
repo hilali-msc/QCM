@@ -52,4 +52,13 @@ public class InscriptionTestService {
 		}
 	}
 	
+	public static Inscription_test getInscriptionTestById (int idInscription) throws SQLException
+	{
+		try {
+			return InscriptionTestDAO.getInscriptionTestByUId(idInscription);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+	
 }
