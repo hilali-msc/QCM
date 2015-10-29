@@ -53,17 +53,21 @@ public class InscriptionTestDAO {
 		Connection cnx=null;
 		PreparedStatement rqt=null;
 		ResultSet rs=null;
-		try{
+		Date date_debut = new Date(inscription.getDate_debut().getTime());
+		Date date_inscription = new Date(inscription.getDate_inscription().getTime());
+		
+		try{		
 			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("insert into INSCRIPTION(id_test, date_inscription, id_user, "
-					+ "date_debut, temps_restant, nb_incident, position_question) "
+			rqt=cnx.prepareStatement("insert into inscription_test(id_test, date_inscription, id_user, "
+					+ "dateDebutTest, tempsRestant, nbIncident, positionQuestion) "
 					+ "values(?, ?, ?, ?, ?, ?, ?) ");
 			rqt.setInt(1, inscription.getId_test());
-			rqt.setDate(2, (Date) inscription.getDate_inscription());
+			rqt.setDate(2, date_inscription);
 			rqt.setInt(3, inscription.getId_user());
-			rqt.setDate(4, (Date) inscription.getDate_debut());
+			rqt.setDate(4, date_debut);
 			rqt.setInt(5, inscription.getTemps_restant());
-			rqt.setInt(6, inscription.getPosition_question());
+			rqt.setInt(6, inscription.getNb_incident());
+			rqt.setInt(7, inscription.getPosition_question());
 			rqt.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de la liste d'inscription : ");

@@ -1,6 +1,7 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -13,11 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Inscription_test;
-import fr.eni.bean.Promotion;
 import fr.eni.bean.Test;
 import fr.eni.bean.Utilisateur;
 import fr.eni.services.InscriptionTestService;
-import fr.eni.services.PromotionService;
 import fr.eni.services.TestService;
 import fr.eni.services.UtilisateurService;
 
@@ -27,71 +26,84 @@ import fr.eni.services.UtilisateurService;
 @WebServlet("/inscriptionsTests")
 public class InscriptionTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InscriptionTestServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public InscriptionTestServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
+		List<Utilisateur> stagiaires = null;
 		List<Test> listTest = null;
-		List<Promotion> listPromo = null;
-		List<Utilisateur> listUtilisateur= null;
-		int id = Integer.parseInt(request.getParameter("id"));
 		try {
 			listTest = TestService.importerListeTests();
-			listPromo = PromotionService.importerListe();
-			listUtilisateur =  UtilisateurService.importerListeStagiaireParIdPromo(id);
+			stagiaires = UtilisateurService.importerListeStagaire();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("stagiaires", listUtilisateur);
-		request.setAttribute("promotions", listPromo);
 		request.setAttribute("tests", listTest);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ajoutStagiaire.jsp");
+		request.setAttribute("stagiaires", stagiaires);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("inscriptionTest.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
+		int id_test = Integer.parseInt(request.getParameter("id_test"));
+		Test test = new Test();
+
+		try {
+			test = TestService.getTestById(id_test);
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+
+		String[] utilisateursId = request.getParameterValues("stagiaires");
 		InscriptionTestService service = new InscriptionTestService();
 		Inscription_test inscription = new Inscription_test();
-		inscription.setId_user(Integer.parseInt(request.getParameter("id_user")));
-		inscription.setId_test(Integer.parseInt(request.getParameter("id_test")));
+		inscription.setId_test(id_test);
 		inscription.setNb_incident(0);
 		inscription.setPosition_question(0);
-		inscription.setTemps_restant(Integer.parseInt(request.getParameter("duree_test")));
+		inscription.setTemps_restant(test.getDuree_test());
+
+		String date_inscription = request.getParameter("dateInscription");
+		String date_debut = request.getParameter("dateDebut");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		String date_inscription = request.getParameter("date_inscription");
-		String date_debut = request.getParameter("date_debut");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yy");
 		try {
 			inscription.setDate_inscription(sdf.parse(date_inscription));
 			inscription.setDate_debut(sdf.parse(date_debut));
+			System.out.println(date_inscription + date_debut);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		
 		try {
-			service.insert(inscription);
-			response.sendRedirect("stagiaires");
+			for (String id : utilisateursId) {
+				inscription.setId_user(Integer.parseInt(id));
+				service.insert(inscription);
+			}
 		} catch (Exception e) {
 			doGet(request, response);
 		}
-	}
+		response.sendRedirect("stagiaires");
 
+	}
 }
