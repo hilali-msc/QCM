@@ -107,19 +107,20 @@ public class TestDAO {
 		Integer testId = null;
 		try{
 			cnx=ConnectionDB.getConnection();
-			rqt=cnx.prepareStatement("insert into TEST(nom, duree_test, seuil_EnCours, seuil_Acquis) "
-					+ "values(?, ?, ?, ?) " ,Statement.RETURN_GENERATED_KEYS);
+			rqt=cnx.prepareStatement("insert into TEST(nom, duree_test, seuil_EnCours, seuil_Acquis, est_archive) "
+					+ "values(?, ?, ?, ?, ?) " ,Statement.RETURN_GENERATED_KEYS);
 			rqt.setString(1, test.getNom());
 			rqt.setInt(2, test.getDuree_test());
 			rqt.setInt(3, test.getSeuil_en_cours());
 			rqt.setInt(4, test.getSeuil_acquis());
+			rqt.setBoolean(5, test.getEst_archive());
 			rqt.executeUpdate();
 			 rs =rqt.getGeneratedKeys();
 			 if(rs.next()){
 				 testId = rs.getInt(1);
 			 }
 		}catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de l'insertion de test : ");
 			e.printStackTrace();
 			
 		}finally{

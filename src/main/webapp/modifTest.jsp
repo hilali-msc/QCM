@@ -10,10 +10,11 @@
 <title>Modification test</title>
 </head>
 <body>
-	<div class="container">
-		<jsp:include page="header.jsp" />
-		<h2>Modifier tests</h2>
-		<form role="form" action="./modifierTest" method="POST">
+	<form role="form" action="./modifierTest" method="POST">
+		<div class="container">
+			<jsp:include page="header.jsp" />
+			<h2>Modifier tests</h2>
+
 			<input type="hidden" value="${test.id_test}" id="id" name="id_test" />
 			<div class="form-group">
 				<label for="nom">Nom:</label> <input type="text"
@@ -34,41 +35,48 @@
 					class="form-control" id="seuil_acquis" name="seuil_acquis"
 					value="${test.seuil_acquis }">
 			</div>
-			<button type="submit" class="btn btn-primary">Modifier</button>
-		</form>
-	</div>
+		</div>
+		<button type="submit" class="btn btn-primary">Modifier</button>
+	</form>
 	<table>
 		<tr>
-			<th><h2>Liste des themes du test</h2></th>
-			<th><h2>Liste des themes restants</h2></th>
-		</tr>
-		<tr>
 			<td>
-				<ul class="list-group">
-					<c:forEach var="themeParTest" items="${themesParTests}">
-						<li class="list-group-item"><span class="pull-right">
-								<a
-								href="<c:url value="suppressionThemeList">
-        						 <c:param name="id_theme" value="${themeParTest.id_theme}"/>
-       							 </c:url>"><span
-									class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-						</span>
-							<h4 class="list-group-item-heading">
-								<c:out value="${themeParTest.libelle}"></c:out>
-							</h4> Nombre de questions : <input type="text" name="nb_questions"
-							readonly="readonly" value="${themeParTest.id_theme}" /></li>
-					</c:forEach>
-				</ul>
+				<div class="form-group">
+					<label for="themes">Themes du test:</label> <select id="themes"
+						class="form-control multiselect" multiple="multiple" name="themes">
+						<c:forEach var="themesTest" items="${themesParTests}">
+							<option value="${themesTest.id_theme}"><c:out
+									value="${themesTest.libelle}"></c:out>
+							</option>
+						</c:forEach>
+					</select>
+					<p>Cliquer sur ctrl pour en sélectionner plusieurs</p>
+				</div>
 			</td>
+			<td><a
+				href="<c:url value="suppressionThemeTest">
+        						 <c:param name="id" value="${themesTest.id_test}"/>
+       							 </c:url>"><span
+					class="glyphicon glyphicon-forward" aria-hidden="true"></span></a></br>
+			</br>
+			<a
+				href="<c:url value="ajoutThemeTest">
+        						 <c:param name="id" value="${themesRestant.id_test}"/>
+       							 </c:url>"><span
+					class="glyphicon glyphicon-backward" aria-hidden="true"></span></a></td>
 			<td>
-				<ul class="list-group">
-					<c:forEach var="themeRestant" items="${themesRestants}">
-						<li class="list-group-item"><span class="pull-right"></span>
-							<h4 class="list-group-item-heading">
-								<c:out value="${themeRestant.libelle}"></c:out>
-							</h4> Nombre de questions : <input type="text" name="nb_questions" />
-					</c:forEach>
-				</ul>
+				<div class="form-group">
+
+					<label for="themes">Themes restant:</label> <select id="themes"
+						class="form-control multiselect" multiple="multiple" name="themes">
+						<c:forEach var="themesRestant" items="${themesRestants}">
+							<option value="${themesRestant.id_theme}"><c:out
+									value="${themesRestant.libelle}"></c:out>
+							</option>
+						</c:forEach>
+					</select>
+					<p>Cliquer sur ctrl pour en sélectionner plusieurs</p>
+				</div>
 			</td>
 		</tr>
 	</table>

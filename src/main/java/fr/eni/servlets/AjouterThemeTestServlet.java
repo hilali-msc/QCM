@@ -1,7 +1,11 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Section;
+import fr.eni.bean.Test;
+import fr.eni.bean.Theme;
 import fr.eni.services.SectionService;
+import fr.eni.services.TestService;
+import fr.eni.services.ThemeService;
 
 /**
  * Servlet implementation class AjouterThemeTestServlet
@@ -33,15 +41,6 @@ public class AjouterThemeTestServlet extends HttpServlet {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
-		Section section = new Section();
-		section.setId_test(Integer.parseInt(request.getParameter("id_test")));
-		section.setId_theme(Integer.parseInt(request.getParameter("id_theme")));
-		section.setNb_question(Integer.parseInt(request.getParameter("nb_questions")));
-		try {
-			SectionService.insert(section);
-		} catch (Exception e) {
-			response.sendRedirect("modifierTest");
-		}
+		
 	}
-
 }

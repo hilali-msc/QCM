@@ -37,7 +37,7 @@
 			</div>
 			<div class="form-group">
 	
-				<label for="themes">Seuil acquis:</label> 
+				<label for="themes">Themes:</label> 
 				<select id="themes" class="form-control multiselect" multiple="multiple" name="themes">
 					<c:forEach var="theme" items="${themes}">
 				<option value="${theme.id_theme}"><c:out

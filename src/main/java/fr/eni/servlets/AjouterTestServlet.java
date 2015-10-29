@@ -71,6 +71,7 @@ public class AjouterTestServlet extends HttpServlet {
 			test.setDuree_test(Integer.parseInt(request.getParameter("duree_test")));
 			test.setSeuil_en_cours(Integer.parseInt(request.getParameter("seuil_en_cours")));
 			test.setSeuil_acquis(Integer.parseInt(request.getParameter("seuil_acquis")));
+			test.setEst_archive(false);
 			TestService service = new TestService();
 		Integer testId = null;
 			try {
@@ -106,8 +107,10 @@ public class AjouterTestServlet extends HttpServlet {
 			for (int i =0; i<themesIds.length ; i++) {
 					Section section = new Section();
 					section.setId_test(testId);
-					section.setId_theme(Integer.parseInt(request.getParameter(new String("theme"+ String.valueOf(i+1)))));
-					section.setNb_question(Integer.parseInt(request.getParameter(new String("nb"+String.valueOf(i+1)))));
+					section.setId_theme(Integer.parseInt(request.getParameter(
+							new String("theme"+ String.valueOf(i+1)))));
+					section.setNb_question(Integer.parseInt(request.getParameter(
+							new String("nb"+String.valueOf(i+1)))));
 					try {
 						SectionService.insert(section);
 					} catch (SQLException e) {

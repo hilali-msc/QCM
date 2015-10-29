@@ -12,8 +12,7 @@ import fr.eni.bean.Theme;
 public class ThemeDAO {
 	
 	public static List<Theme> importerListeThemeTest(int id) throws SQLException {
-
-		Theme theme = new Theme();
+		
 		List<Theme> listeTheme = new ArrayList<Theme>();
 		Connection cnx = null;
 		PreparedStatement ps = null;
@@ -29,7 +28,7 @@ public class ThemeDAO {
 		rs = ps.executeQuery();
 
 		while (rs.next()) {
-			
+			Theme theme = new Theme();
 			theme.setId_theme(rs.getInt("id_theme"));
 			theme.setLibelle(rs.getString("libelle"));
 			listeTheme.add(theme);
@@ -41,7 +40,6 @@ public class ThemeDAO {
 	
 	public static List<Theme> importerListeThemeRestant(int id) throws SQLException {
 
-		Theme theme = new Theme();
 		List<Theme> listeTheme = new ArrayList<Theme>();
 		Connection cnx = null;
 		PreparedStatement ps = null;
@@ -59,7 +57,7 @@ public class ThemeDAO {
 		rs = ps.executeQuery();
 
 		while (rs.next()) {
-			
+			Theme theme = new Theme();
 			theme.setId_theme(rs.getInt("id_theme"));
 			theme.setLibelle(rs.getString("libelle"));
 			listeTheme.add(theme);
