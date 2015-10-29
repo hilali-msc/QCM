@@ -18,6 +18,17 @@ public class ReponseService {
 			throw new SQLException(e);
 		}
 	}
+	
+	public static Reponse getReponse(int idReponse) throws SQLException {
+
+		try {
+			Reponse uneReponse = null;		
+			uneReponse = ReponseDAO.getReponse(idReponse);
+			return uneReponse;
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
 
 	public static void insert(Reponse reponse) throws SQLException {
 

@@ -27,7 +27,7 @@ public class ReponseDAO {
 				Reponse reponse = new Reponse(
 									rs.getInt("id_reponse"),
 									rs.getString("libelle"),
-									rs.getBoolean("est_correct"),
+									rs.getBoolean("estCorrect"),
 									rs.getInt("id_question")
 						);
 				listeReponse.add(reponse);				
@@ -45,11 +45,46 @@ public class ReponseDAO {
 		return listeReponse;
 	}
 	
+	public static Reponse getReponse(int idReponse) throws SQLException{
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Reponse uneReponse = new Reponse();
+		String requete = "SELECT * FROM REPONSE WHERE id_reponse = ?";
+		
+		try{
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);	
+			rqt.setInt(1, idReponse);
+			rs = rqt.executeQuery();
+			
+			if (rs.next()){
+				uneReponse = new Reponse(
+									rs.getInt("id_reponse"),
+									rs.getString("libelle"),
+									rs.getBoolean("estCorrect"),
+									rs.getInt("id_question")
+						);
+				return uneReponse;			
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur lors de l'execution de la requete de la liste des réponses : ");
+			e.printStackTrace();
+			
+		}finally{
+			if (rs != null) rs.close();
+			if (rqt != null) rqt.close();
+			if (cnx != null) cnx.close();
+		}
+		
+		return uneReponse;
+	}
+	
 	public static void insert(Reponse reponse) throws SQLException{
 		Connection cnx = null;
 		PreparedStatement rqt = null;
-		String requete = " INSERT INTO REPONSE(libelle, est_correct, id_question) "
-					   + " VALUES(?, ?, ?) ";
+		String requete = " INSERT INTO REPONSE(libelle, estCorrect, id_question) "
+					   + " VALUE(?, ?, ?) ";
 		
 		try{
 			cnx = ConnectionDB.getConnection();
@@ -74,7 +109,7 @@ public class ReponseDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		String requete = " UPDATE REPONSE " 
-					   + " SET libelle = ?, est_correct = ?, id_question = ? "
+					   + " SET libelle = ?, estCorrect = ?, id_question = ? "
 					   + " WHERE id_reponse = ? ";
 		
 		try{

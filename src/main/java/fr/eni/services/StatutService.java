@@ -11,7 +11,12 @@ public class StatutService {
 	public static Vector<Statut> importerListe() {
 
 		Vector<Statut> listePromo = new Vector<Statut>();
-		listePromo = StatutDAO.importerListe();
+		try {
+			listePromo = StatutDAO.importerListe();
+		} catch (SQLException e) {
+			System.out.println("Erreur dansle service d'importation des promos");
+			e.printStackTrace();
+		}
 		return listePromo;
 
 	}

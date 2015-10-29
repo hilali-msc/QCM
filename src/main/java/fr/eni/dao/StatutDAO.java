@@ -10,7 +10,7 @@ import fr.eni.bean.Statut;
 
 public class StatutDAO {
 
-	public static Vector<Statut> importerListe(){
+	public static Vector<Statut> importerListe() throws SQLException{
 		
 		Vector<Statut> listeStatut = new Vector<Statut>();
 		Connection cnx = null;
@@ -19,27 +19,10 @@ public class StatutDAO {
 		String req = "SELECT * FROM STATUT ;";		
 		
 		try {
-			cnx = ConnectionDB.getConnection();			
-		} catch (SQLException e2) {
-			System.out.println("Erreur lors de la récupération de la connexion (importerListeStatut) : ");
-			e2.printStackTrace();
-		}		
-		
-		try {
+			cnx = ConnectionDB.getConnection();	
 			ps = cnx.prepareStatement(req);	
-		} catch (SQLException e1) {
-			System.out.println("Erreur lors de la préparation de la requete de la liste de statut : ");
-			e1.printStackTrace();
-		}		
-		
-		try {
 			rs = ps.executeQuery();	
-		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete de la liste de statut : ");
-			e.printStackTrace();
-		}
-		
-		try {			
+
 			while(rs.next()){
 				Statut monStatut = new Statut();
 				monStatut.setId_statut(rs.getInt("id_statut"));
@@ -50,6 +33,11 @@ public class StatutDAO {
 		} catch (Exception e) {
 			System.out.println("Erreur lors du cast de la liste de statut : ");
 			e.printStackTrace();
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (ps!=null) ps.close();
+			if (cnx!=null) cnx.close();
 		}
 		
 		return listeStatut;

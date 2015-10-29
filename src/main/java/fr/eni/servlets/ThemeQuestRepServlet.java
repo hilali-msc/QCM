@@ -55,12 +55,8 @@ public class ThemeQuestRepServlet extends HttpServlet {
 		
 		try {
 			themes = ThemeService.getListThemes();
-			if(themes != null && themes.size() > 1){
-				questions = QuestionService.getQuestions(idTheme);
-				if(questions != null && questions.size() > 1){
-					reponses = ReponseService.getReponses(idQuestion);
-				}
-			}
+			questions = QuestionService.getQuestions(idTheme);
+			reponses = ReponseService.getReponses(idQuestion);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -81,7 +81,7 @@
 
 				<p class="list-group-item-text">
 					<c:out value="${question.enonce}"></c:out>
-					<img src="<c:url value="${question.url_image}"></c:url>"></img>
+					<img src="<c:url value="${question.url_image}"></c:url>" style="max-width: 40px; max-height: 40px" class="img-responsive"></img>
 				</p></li>
 		</c:forEach>
 	</ul>
@@ -101,14 +101,12 @@
 	<!-- Liste déroulante des questions, suivant sa sélection les réponses se mettent à jour -->
 	<div class="dropup">
 		<button class="btn btn-default dropdown-toggle" type="button"
-			id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false">
+			data-toggle="dropdown">
 			${questionSelect.enonce} <span class="caret"></span>
 		</button>
-		<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+		<ul class="dropdown-menu">
 			<c:forEach var="question" items="${questions}">
-				<li><a
-					href="<c:url value="themeQuestRep">
+				<li><a href="<c:url value="themeQuestRep">
 								<c:param name="idTheme" value="${question.id_theme}"/>
 								<c:param name="idQuestion" value="${question.id_question}"/>
 							</c:url>">
@@ -131,7 +129,12 @@
 				</p>
 
 				<p class="list-group-item-text">
-					<c:out value="${reponse.isEst_correct}"></c:out>
+					<c:if test="${reponse.est_correct}">
+						<i>Bonne réponse</i>
+					</c:if>
+					<c:if test="${!reponse.est_correct}">
+						Mauvaise réponse
+					</c:if>
 				</p></li>
 		</c:forEach>
 	</ul>

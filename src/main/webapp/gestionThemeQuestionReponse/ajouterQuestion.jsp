@@ -17,7 +17,7 @@
 		<form role="form" action="/qcm/ajouterQuestion" method="POST">
 			<div class="form-group">
 				<input type="hidden" value="${theme.id_theme}" id="idTheme" name="idTheme"/>
-				<label><c:out value="${theme.libelle}"></c:out></label>
+				<h4><c:out value="${theme.libelle}"></c:out></h4>
 			</div>
 			
 			<div class="form-group">

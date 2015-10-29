@@ -176,4 +176,24 @@
     <servlet-name>ModifierQuestion</servlet-name>
     <url-pattern>/modifierQuestion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AjouterReponse</display-name>
+    <servlet-name>AjouterReponse</servlet-name>
+    <servlet-class>fr.eni.servlets.AjouterReponseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjouterReponse</servlet-name>
+    <url-pattern>/ajouterReponse</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModifierReponse</display-name>
+    <servlet-name>ModifierReponse</servlet-name>
+    <servlet-class>fr.eni.servlets.ModifierReponseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifierReponse</servlet-name>
+    <url-pattern>/modifierReponse</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -14,10 +14,10 @@
 		<jsp:include page="../header.jsp" />
 		<h2>Ajout d'une réponse</h2>
 		
-		<form role="form" action="./ajouterReponse" method="POST">
+		<form role="form" action="/qcm/ajouterReponse" method="POST">
 			<div class="form-group">
 				<input type="hidden" value="${question.id_question}" id="idQuestion" name="idQuestion"/>
-				<label><c:out value="${question.getEnonce}"></c:out></label>
+				<h4><c:out value="${question.enonce}"></c:out></h4>
 			</div>
 			
 			<div class="form-group">
@@ -27,7 +27,7 @@
 			
 			<div class="form-group">
 				<label for="estCorrect">Est une bonne réponse :</label> 
-				<input type="checkbox" class="form-control" id="estCorrect" name="estCorrect">
+				<input type="checkbox" id="estCorrect" name="estCorrect" value="true">
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Ajouter</button>

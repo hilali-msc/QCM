@@ -11,7 +11,7 @@ import fr.eni.bean.Utilisateur;
 
 public class UtilisateurDAO {
 
-	public Utilisateur getStagiaires(String login, String password) {
+	public Utilisateur getStagiaires(String login, String password) throws SQLException {
 
 		Utilisateur perso = new Utilisateur();
 		Connection cnx = null;
@@ -21,28 +21,11 @@ public class UtilisateurDAO {
 
 		try {
 			cnx = ConnectionDB.getConnection();
-		} catch (SQLException e2) {
-			System.out.println("Erreur lors de la r�cup�ration de la connection (authentifiaction) : ");
-			e2.printStackTrace();
-		}
-
-		try {
 			ps = cnx.prepareStatement(req);
 			ps.setString(1, login);
 			ps.setString(2, password);
-		} catch (SQLException e1) {
-			System.out.println("Erreur lors de la pr�paration de la requete d'authentification : ");
-			e1.printStackTrace();
-		}
-
-		try {
 			rs = ps.executeQuery();
-		} catch (SQLException e) {
-			System.out.println("Erreur lors de l'execution de la requete d'authentification : ");
-			e.printStackTrace();
-		}
-
-		try {
+			
 			if (rs.next()) {
 				perso.setId_user(rs.getInt("id_user"));
 				perso.setNom(rs.getString("nom"));
@@ -56,8 +39,16 @@ public class UtilisateurDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Erreur lors du cast de la personne � authentifi� : ");
+			System.out.println("Erreur lors de l'execution de la requete d'authentification : ");
 			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (cnx != null)
+				cnx.close();
 		}
 
 		return perso;
@@ -71,24 +62,38 @@ public class UtilisateurDAO {
 		ResultSet rs = null;
 		String req = "SELECT * FROM utilisateur WHERE id_statut = 1 AND est_archive = 0;";
 
-		cnx = ConnectionDB.getConnection();
-		ps = cnx.prepareStatement(req);
-		rs = ps.executeQuery();
+		try{
+			cnx = ConnectionDB.getConnection();
+			ps = cnx.prepareStatement(req);
+			rs = ps.executeQuery();
+	
+			while (rs.next()) {
+				Utilisateur perso = new Utilisateur();
+				perso.setId_user(rs.getInt("id_user"));
+				perso.setNom(rs.getString("nom"));
+				perso.setPrenom(rs.getString("prenom"));
+				perso.setId_promo(rs.getInt("id_promo"));
+				perso.setId_statut(rs.getInt("id_statut"));
+				perso.setEst_archive(rs.getBoolean("est_archive"));
+				perso.setPassword(rs.getString("password"));
+				perso.setLogin(rs.getString("login"));
+				perso.setEmail(rs.getString("email"));
+				listeUtilisateur.add(perso);
+			}
 
-		while (rs.next()) {
-			Utilisateur perso = new Utilisateur();
-			perso.setId_user(rs.getInt("id_user"));
-			perso.setNom(rs.getString("nom"));
-			perso.setPrenom(rs.getString("prenom"));
-			perso.setId_promo(rs.getInt("id_promo"));
-			perso.setId_statut(rs.getInt("id_statut"));
-			perso.setEst_archive(rs.getBoolean("est_archive"));
-			perso.setPassword(rs.getString("password"));
-			perso.setLogin(rs.getString("login"));
-			perso.setEmail(rs.getString("email"));
-			listeUtilisateur.add(perso);
+		} catch (Exception e) {
+			System.out.println("Erreur lors de l'execution de la requete de la liste des stagiaire : ");
+			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (cnx != null)
+				cnx.close();
 		}
-
+		
 		return listeUtilisateur;
 
 	}
@@ -101,31 +106,45 @@ public class UtilisateurDAO {
 		ResultSet rs = null;
 		String req = "SELECT * FROM utilisateur WHERE id_promo = ? ;";
 
-		cnx = ConnectionDB.getConnection();
-		ps = cnx.prepareStatement(req);
-		ps.setInt(1, id);
-		rs = ps.executeQuery();
+		try{
+			cnx = ConnectionDB.getConnection();
+			ps = cnx.prepareStatement(req);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+	
+			while (rs.next()) {
+				Utilisateur perso = new Utilisateur();
+				perso.setId_user(rs.getInt("id_user"));
+				perso.setNom(rs.getString("nom"));
+				perso.setPrenom(rs.getString("prenom"));
+				perso.setId_promo(rs.getInt("id_promo"));
+				perso.setId_statut(rs.getInt("id_statut"));
+				perso.setEst_archive(rs.getBoolean("est_archive"));
+				perso.setPassword(rs.getString("password"));
+				perso.setLogin(rs.getString("login"));
+				perso.setEmail(rs.getString("email"));
+				listeUtilisateur.add(perso);
+			}
 
-		while (rs.next()) {
-			Utilisateur perso = new Utilisateur();
-			perso.setId_user(rs.getInt("id_user"));
-			perso.setNom(rs.getString("nom"));
-			perso.setPrenom(rs.getString("prenom"));
-			perso.setId_promo(rs.getInt("id_promo"));
-			perso.setId_statut(rs.getInt("id_statut"));
-			perso.setEst_archive(rs.getBoolean("est_archive"));
-			perso.setPassword(rs.getString("password"));
-			perso.setLogin(rs.getString("login"));
-			perso.setEmail(rs.getString("email"));
-			listeUtilisateur.add(perso);
+		} catch (Exception e) {
+			System.out.println("Erreur lors de l'execution de la requete de la liste des stagiaire par id promo : ");
+			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (cnx != null)
+				cnx.close();
 		}
-
+		
 		return listeUtilisateur;
 
 	}
 	
 	
-	public static Utilisateur rechercheParId(int id) {
+	public static Utilisateur rechercheParId(int id) throws SQLException {
 
 		Utilisateur perso = new Utilisateur();
 		Connection cnx = null;
@@ -138,6 +157,7 @@ public class UtilisateurDAO {
 			ps = cnx.prepareStatement(req);
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
+			
 			if (rs.next()) {
 				perso.setId_user(rs.getInt("id_user"));
 				perso.setNom(rs.getString("nom"));
@@ -151,8 +171,16 @@ public class UtilisateurDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Erreur lors du cast de recherche d'utilisateur : ");
+			System.out.println("Erreur lors de l'execution de la requete de recherche d'utilisateur : ");
 			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (cnx != null)
+				cnx.close();
 		}
 
 		return perso;

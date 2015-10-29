@@ -1,6 +1,7 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bean.Question;
 import fr.eni.bean.Reponse;
+import fr.eni.bean.Theme;
 import fr.eni.services.QuestionService;
 import fr.eni.services.ReponseService;
+import fr.eni.services.ThemeService;
 
 /**
- * Servlet implementation class AjouterReponseServlet
+ * Servlet implementation class ModifierReponseServlet
  */
-@WebServlet("/AjouterReponseServlet")
-public class AjouterReponseServlet extends HttpServlet {
+@WebServlet("/ModifierReponseServlet")
+public class ModifierReponseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,17 +29,23 @@ public class AjouterReponseServlet extends HttpServlet {
 			response.sendRedirect("/");
 		}
 		
-		Question uneQuestion = new Question();		
-		int idQuestion = Integer.parseInt(request.getParameter("idQuestion"));
-		
+		Reponse uneReponse = null;
+		Question uneQuestion = null;
+		List<Question> questions = null;
+		int idReponse = Integer.parseInt(request.getParameter("id"));				
+
 		try {
-			uneQuestion = QuestionService.getQuestion(idQuestion);
+			uneReponse = ReponseService.getReponse(idReponse);
+			uneQuestion = QuestionService.getQuestion(uneReponse.getId_question());
+			questions = QuestionService.getQuestions(uneQuestion.getId_theme());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("question", uneQuestion);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/gestionThemeQuestionReponse/ajouterReponse.jsp");
+		request.setAttribute("reponse", uneReponse);		
+		request.setAttribute("questions", questions);	
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/gestionThemeQuestionReponse/modifierReponse.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -46,12 +55,13 @@ public class AjouterReponseServlet extends HttpServlet {
 		}
 		
 		Reponse uneReponse = new Reponse();
-		uneReponse.setLibelle(request.getParameter("libelle"));	
-		uneReponse.setEst_correct(Boolean.parseBoolean(request.getParameter("estCorrect")));	
-		uneReponse.setId_question(Integer.parseInt(request.getParameter("idQuestion")));
+		uneReponse.setEst_correct(Boolean.parseBoolean(request.getParameter("estCorrect")));
+		uneReponse.setId_question(Integer.parseInt(request.getParameter("question")));
+		uneReponse.setId_reponse(Integer.parseInt(request.getParameter("idReponse")));
+		uneReponse.setLibelle(request.getParameter("libelle"));
 		
 		try {
-			ReponseService.insert(uneReponse);
+			ReponseService.update(uneReponse);
 			response.sendRedirect("themeQuestRep");
 		} catch (Exception e) {
 			doGet(request, response);
