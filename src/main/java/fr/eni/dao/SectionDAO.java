@@ -87,16 +87,16 @@ public class SectionDAO {
 		PreparedStatement rqt = null;
 		try {
 			cnx = ConnectionDB.getConnection();
-			rqt = cnx.prepareStatement("insert into SECTION "
-					+ "values(?, ?, ?) ");
+			rqt = cnx.prepareStatement("INSERT INTO SECTION VALUE(?, ?, ?) ");
 			rqt.setInt(1, section.getId_test());
 			rqt.setInt(2, section.getId_theme());
 			rqt.setInt(3, section.getNb_question());
 			rqt.executeUpdate();
+			
 		}catch (SQLException e) {
-			System.out
-			.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
+			System.out.println("Erreur lors de l'execution de la requete de la liste de promotion : ");
 			e.printStackTrace();
+			
 		} finally {
 			if (rqt != null)
 				rqt.close();
@@ -131,6 +131,7 @@ public class SectionDAO {
 	public static void delete(Section section) throws SQLException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
+		
 		try {
 			cnx = ConnectionDB.getConnection();
 			rqt = cnx.prepareStatement("delete from SECTION "

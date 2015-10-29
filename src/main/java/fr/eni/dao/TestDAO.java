@@ -115,10 +115,12 @@ public class TestDAO {
 			rqt.setInt(4, test.getSeuil_acquis());
 			rqt.setBoolean(5, test.getEst_archive());
 			rqt.executeUpdate();
-			 rs =rqt.getGeneratedKeys();
-			 if(rs.next()){
+			rs = rqt.getGeneratedKeys();
+			
+			if(rs.next()){
 				 testId = rs.getInt(1);
 			 }
+			
 		}catch (SQLException e) {
 			System.out.println("Erreur lors de l'execution de la requete de l'insertion de test : ");
 			e.printStackTrace();

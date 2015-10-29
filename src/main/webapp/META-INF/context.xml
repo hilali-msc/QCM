@@ -16,7 +16,7 @@
 		url="jdbc:mysql://localhost/qcm"
 		username="qcmuser" 
 		password="qcmuser" 
-		maxActive="10" 
+		maxActive="20" 
 		initialSize="5" />
 
 </Context>

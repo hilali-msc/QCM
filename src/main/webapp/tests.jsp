@@ -20,36 +20,41 @@
 
 	<ul class="list-group">
 		<c:forEach var="test" items="${tests}">
-			<li class="list-group-item"><span class="pull-right"> <a
-					href="<c:url value="suppressionTest">
+			<li class="list-group-item">
+				<span class="pull-right"> 
+					<a href="<c:url value="suppressionTest">
         						 <c:param name="id" value="${test.id_test}"/>
-       							 </c:url>"><span
-						class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> <a
-					href="<c:url value="modifierTest">
-        						 <c:param name="id" value="${test.id_test}"/>
-       							 </c:url>"><span
-						class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> <a
-					href="<c:url value="detailTest">
-        						 <c:param name="id" value="${test.id_test}"/>
-       							 </c:url>">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-				</a></span>
+       						</c:url>">
+       					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+       				</a> 
+       				<a href="<c:url value="modifierTest">
+        						 	<c:param name="id" value="${test.id_test}"/>
+       						</c:url>">
+       					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+       				</a> 
+<%--        				<a href="<c:url value="detailTest"> --%>
+<%--         						 	<c:param name="id" value="${test.id_test}"/> --%>
+<%--        						</c:url>"> --%>
+<!-- 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
+<!-- 					</a> -->
+				</span>
 
 				<h4 class="list-group-item-heading">
 					<c:out value="${test.nom}"></c:out>
-
-
 				</h4>
+				
 				<p class="list-group-item-text">
 					Duree :
 					<c:out value="${test.duree_test}"></c:out>h
 				</p>
+				
 				<p class="list-group-item-text">
 					Seuil en cours :
 					<c:out value="${test.seuil_en_cours}"></c:out>
 					Seuil acquis :
 					<c:out value="${test.seuil_acquis}"></c:out>
-				</p></li>
+				</p>
+			</li>
 		</c:forEach>
 	</ul>
 </div>
