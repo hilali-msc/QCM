@@ -18,7 +18,7 @@ import fr.eni.services.ThemeService;
 /**
  * Servlet implementation class DetailTestServlet
  */
-@WebServlet("/DetailTestServlet")
+@WebServlet("/detailTest")
 public class DetailTestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
