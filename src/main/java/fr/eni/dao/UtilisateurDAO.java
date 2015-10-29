@@ -270,4 +270,50 @@ public class UtilisateurDAO {
 			if (cnx!=null) cnx.close();
 		}
 	}
+	
+	
+	
+	
+	
+	public static Utilisateur getStagiairesByLogin(String login) throws SQLException {
+
+		Utilisateur perso = new Utilisateur();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT * FROM UTILISATEUR WHERE login = ? ";
+
+		try {
+			cnx = ConnectionDB.getConnection();
+			ps = cnx.prepareStatement(req);
+			ps.setString(1, login);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				perso.setId_user(rs.getInt("id_user"));
+				perso.setNom(rs.getString("nom"));
+				perso.setPrenom(rs.getString("prenom"));
+				perso.setId_promo(rs.getInt("id_promo"));
+				perso.setId_statut(rs.getInt("id_statut"));
+				perso.setEst_archive(rs.getBoolean("est_archive"));
+				perso.setPassword(rs.getString("password"));
+				perso.setLogin(rs.getString("login"));
+				perso.setEmail(rs.getString("email"));
+			}
+
+		} catch (Exception e) {
+			System.out.println("Erreur lors de l'execution de la requete d'authentification : ");
+			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (cnx != null)
+				cnx.close();
+		}
+
+		return perso;
+	}
 }

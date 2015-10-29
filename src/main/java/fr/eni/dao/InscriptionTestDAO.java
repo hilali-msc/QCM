@@ -79,4 +79,38 @@ public class InscriptionTestDAO {
 		}
 	}
 	
+	
+	public static List<Inscription_test> getInscriptionTestByUser(int id_user) throws SQLException{
+		Connection cnx=null;
+		PreparedStatement rqt=null;
+		ResultSet rs=null;
+		ArrayList<Inscription_test> listeInscriptionsTests = new ArrayList<Inscription_test>();
+		try{
+			cnx=ConnectionDB.getConnection();
+			rqt=cnx.prepareStatement("select * "
+					+ "from INSCRIPTION_TEST "
+					+ "where id_user = ? ");	
+			rqt.setInt(1, id_user);;
+			rs=rqt.executeQuery();
+			while (rs.next()){
+				listeInscriptionsTests.add(new Inscription_test(
+									rs.getInt("id_inscription"),
+									rs.getInt("id_test"),
+									rs.getDate("date_inscription"),
+									rs.getInt("id_user"),
+									rs.getDate("dateDebutTest"),
+									rs.getInt("tempsRestant"),
+									rs.getInt("nbIncident"),
+									rs.getInt("positionQuestion")
+						));		
+			}
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		
+		return listeInscriptionsTests;
+	}
+	
 }

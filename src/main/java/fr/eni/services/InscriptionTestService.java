@@ -40,4 +40,16 @@ public class InscriptionTestService {
 			throw new SQLException(e);
 		}
 	}
+	
+	
+
+	public List<Inscription_test> getInscriptionTestByUser (int id_user) throws SQLException
+	{
+		try {
+			return InscriptionTestDAO.getInscriptionTestByUser(id_user);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+	
 }

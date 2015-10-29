@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
-
 	request.setAttribute("isConneted", false);
 	request.setAttribute("isFormateur", false);
 	if (request.getUserPrincipal() != null) {
@@ -33,12 +32,15 @@
 						<li><a href="tests">Tests</a></li>
 						<li><a href="inscriptionsTests">Inscriptions tests</a></li>
 						<li><a href="themeQuestRep">Gestion du référenciel</a></li>
-					</c:if>					
+					</c:if>
+					<c:if test="${!isFormateur}">
+						<li><a href="listInscriptionTest">Passer un test</a></li>
+					</c:if>
 					<li><a href="deconnexion">Deconnexion</a></li>
 				</ul>
 			</div>
 		</c:if>
-		
+
 	</div>
 </nav>
 

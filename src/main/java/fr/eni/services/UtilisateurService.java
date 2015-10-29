@@ -60,5 +60,14 @@ public class UtilisateurService {
 			throw new Exception(e);
 		}
 	}
+	
+	public Utilisateur getStagiairesByLogin(String login) throws Exception
+	{
+		try {
+			return UtilisateurDAO.getStagiairesByLogin(login);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+	}
 
 }
