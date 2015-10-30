@@ -13,6 +13,6 @@
 </head>
 <body class="container">
    <jsp:include page="header.jsp"/>
-<h1>QCM</h1>
+<h1>Projet de gestion de QCM</h1>
 </body>
 </html>
