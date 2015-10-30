@@ -22,11 +22,6 @@
        						</c:url>">
 						<span class="pull-right glyphicon glyphicon-menu-right"></span>
 						<h4 class="list-group-item-heading">
-							Nom:
-							<c:out value="${inscription.nom}"></c:out>
-							Prenom:
-							<c:out value="${inscription.prenom}"></c:out>
-							Test
 							<c:out value="${inscription.nomTest }"></c:out>
 						</h4>
 				</a></li>

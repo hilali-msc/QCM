@@ -66,7 +66,7 @@
        						</c:url>">
 						<span class="pull-right glyphicon glyphicon-menu-right"></span>
 						<h4 class="list-group-item-heading">
-							<c:out value="${inscription.libelleTest}"></c:out>
+							<c:out value="${inscription.nom}"></c:out> <c:out value="${inscription.prenom}"></c:out> - <c:out value="${inscription.nomTest}"></c:out>
 						</h4>
 				</a></li>
 			</c:forEach>

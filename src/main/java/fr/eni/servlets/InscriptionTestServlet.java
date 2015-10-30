@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -48,6 +49,7 @@ public class InscriptionTestServlet extends HttpServlet {
 		List<Utilisateur> stagiaires = null;
 		List<Test> listTest = null;
 		List<Inscription_test> listInscription = null;
+		List<Inscription_test> newListInscription = new ArrayList<Inscription_test>();
 		Utilisateur user = null;
 		Test test = null;
 		try {
@@ -65,11 +67,12 @@ public class InscriptionTestServlet extends HttpServlet {
 				inscription.setNom(user.getNom());
 				inscription.setPrenom(user.getPrenom());
 				inscription.setNomTest(test.getNom());
+				newListInscription.add(inscription);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		request.setAttribute("inscriptions", listInscription);
+		request.setAttribute("inscriptions", newListInscription);
 		request.setAttribute("tests", listTest);
 		request.setAttribute("stagiaires", stagiaires);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("inscriptionTest.jsp");

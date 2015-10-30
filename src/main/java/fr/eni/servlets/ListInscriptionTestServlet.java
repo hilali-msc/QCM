@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.jdbc.Util;
+
 import fr.eni.bean.Inscription_test;
 import fr.eni.bean.Test;
 import fr.eni.bean.Utilisateur;
@@ -57,13 +59,21 @@ public class ListInscriptionTestServlet extends HttpServlet {
 		
 		for(Inscription_test inscris : listInscription){
 			Test unTest = null;
+			Utilisateur utilisateur = null;
 			try {
+				utilisateur = UtilisateurService.rechercheParId(inscris.getId_user());
 				unTest = TestService.getTestById(inscris.getId_inscription());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			inscris.setNom(utilisateur.getNom());
+			inscris.setPrenom(utilisateur.getPrenom());
 			inscris.setLibelleTest(unTest.getNom());
+			inscris.setNomTest(unTest.getNom());
 			newListInscription.add(inscris);
 		}
 		
