@@ -2,6 +2,7 @@ package fr.eni.services;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Reponse_Candidats;
 import fr.eni.dao.ReponseCandidatsDAO;
@@ -18,7 +19,14 @@ public class ReponseCandidatsService {
 			throw new SQLException(e);
 		}
 	}
+	public static List<Reponse_Candidats> getReponsesByInscription(int id_inscription) throws SQLException {
 
+		try {
+			return ReponseCandidatsDAO.getReponsesByInscription(id_inscription);
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
 	public static void insert(Reponse_Candidats reponseCandidat) throws SQLException {
 
 		try {

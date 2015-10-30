@@ -7,7 +7,25 @@ public class Reponse_Candidats {
 	private int id_user;
 	private int id_question;
 	private int id_inscription;
+	private Reponse reponse;
+	private Question question;
 	
+	
+	public Reponse getReponse() {
+		return reponse;
+	}
+
+	public void setReponse(Reponse reponse) {
+		this.reponse = reponse;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 	public Reponse_Candidats()
 	{
 		super();

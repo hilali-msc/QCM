@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.bean.Reponse_Candidats;
 
@@ -137,5 +138,42 @@ public class ReponseCandidatsDAO {
 				cnx.close();
 		}
 	}
-	
+	public static List<Reponse_Candidats> getReponsesByInscription(int id_inscription) throws SQLException{
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<Reponse_Candidats> listeReponse = new ArrayList<Reponse_Candidats>();
+		String requete = "select * "
+				+ "from response_des_candidats rdc "
+				+ "inner join reponses r on r.id_reponse = rdc.id_reponse "
+				+ "inner join question q on q.id_question = r.id_question "
+				+ "where rdc.id_inscription = ?";
+		
+		try{
+			cnx = ConnectionDB.getConnection();
+			rqt = cnx.prepareStatement(requete);	
+			rqt.setInt(1, id_inscription);
+			rs = rqt.executeQuery();
+			
+			while (rs.next()){
+				listeReponse.add(new Reponse_Candidats(
+						rs.getInt("id_reponse"),
+						rs.getInt("id_test"), 
+						rs.getInt("id_user"),
+						rs.getInt("id_question"),
+						rs.getInt("id_inscription")
+						));			
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur lors de l'execution de la requete de la liste des réponses : ");
+			e.printStackTrace();
+			
+		}finally{
+			if (rs != null) rs.close();
+			if (rqt != null) rqt.close();
+			if (cnx != null) cnx.close();
+		}
+		
+		return listeReponse;
+	}
 }
