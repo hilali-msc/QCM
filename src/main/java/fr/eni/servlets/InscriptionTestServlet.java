@@ -48,12 +48,26 @@ public class InscriptionTestServlet extends HttpServlet {
 		List<Utilisateur> stagiaires = null;
 		List<Test> listTest = null;
 		List<Inscription_test> listInscription = null;
+		Utilisateur user = null;
+		Test test = null;
 		try {
 			listTest = TestService.importerListeTests();
 			stagiaires = UtilisateurService.importerListeStagaire();
 			listInscription = service.getListInscriptions();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		for(Inscription_test inscription : listInscription)
+		{
+			try {
+				user = UtilisateurService.rechercheParId(inscription.getId_user());
+				test = TestService.getTestById(inscription.getId_test());
+				inscription.setNom(user.getNom());
+				inscription.setPrenom(user.getPrenom());
+				inscription.setNomTest(test.getNom());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		request.setAttribute("inscriptions", listInscription);
 		request.setAttribute("tests", listTest);
