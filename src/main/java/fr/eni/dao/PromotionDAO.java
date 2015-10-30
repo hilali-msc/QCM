@@ -43,7 +43,43 @@ public class PromotionDAO {
 		}
 
 		return listePromo;
+}
+	
+	public static Promotion rechercheParId(int id) throws SQLException {
 
+		Promotion promo = new Promotion();
+		Connection cnx = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String req = "SELECT p.libelle FROM utilisateur u "
+				+"inner join promotion p on p.id_promo = u.id_promo "
+				+"where id_user = ? ;";
+
+		try {
+			cnx = ConnectionDB.getConnection();
+			ps = cnx.prepareStatement(req);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				promo.setId_promo(rs.getInt("id_promo"));
+				promo.setLibelle(rs.getString("libelle"));
+			}
+
+		} catch (Exception e) {
+			System.out.println("Erreur lors de l'execution de la requete de recherche d'utilisateur : ");
+			e.printStackTrace();
+			
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
+			if (cnx != null)
+				cnx.close();
+		}
+
+		return promo;
 	}
 
 	public static void insert(Promotion promo) throws SQLException {

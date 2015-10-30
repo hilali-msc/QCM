@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.bean.Promotion;
 import fr.eni.bean.Utilisateur;
+import fr.eni.services.PromotionService;
 import fr.eni.services.UtilisateurService;
 
 /**
@@ -34,11 +36,21 @@ public class StagiairesServlet extends HttpServlet {
 			response.sendRedirect("/");
 		}
 			List<Utilisateur> stagiaires = null;
+			Promotion promo = null;
 			try {
 				stagiaires = UtilisateurService.importerListeStagaire();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			for(Utilisateur stagiaire : stagiaires)
+			{
+				try {
+					promo = PromotionService.rechercheParId(stagiaire.getId_user());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			request.setAttribute("promo", promo);
 			request.setAttribute("stagiaires", stagiaires);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("stagiaires.jsp");
 			dispatcher.forward(request, response);

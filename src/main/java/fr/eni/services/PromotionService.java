@@ -19,6 +19,15 @@ public class PromotionService {
 		
 	}
 	
+	public static Promotion rechercheParId(int id) throws Exception {
+		try {
+			return PromotionDAO.rechercheParId(id);
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+
+	}
+	
 	public static void insert(Promotion promo) throws SQLException {
 
 		try {

@@ -43,7 +43,7 @@
 				</p>
 				<p class="list-group-item-text">
 					Promo :
-					<c:out value="${stagiaire.id_promo}"></c:out>
+					<c:out value="${promo.libelle}"></c:out>
 				</p></li>
 		</c:forEach>
 	</ul>
