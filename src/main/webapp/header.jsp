@@ -31,7 +31,7 @@
 						<li><a href="stagiaires">Stagiaires </a></li>
 						<li><a href="tests">Tests</a></li>
 						<li><a href="inscriptionsTests">Inscriptions tests</a></li>
-						<li><a href="themeQuestRep">Gestion du référenciel</a></li>
+						<li><a href="themeQuestRep">Gestion du référentiel</a></li>
 					</c:if>
 					<c:if test="${!isFormateur}">
 						<li><a href="listInscriptionTest">Passer un test</a></li>
