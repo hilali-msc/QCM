@@ -57,6 +57,22 @@
 			<button type="submit" class="btn btn-primary">Inscrire</button>
 		</div>
 	</form>
+	<ul class="list-group">
+			<c:forEach var="inscription" items="${inscriptions}">
+				<li class="list-group-item"><a
+					href="<c:url value="passerTest">
+        						 <c:param name="id" value="${inscription.id_inscription}"/>
+       						</c:url>">
+						<span class="pull-right glyphicon glyphicon-menu-right"></span>
+						<h4 class="list-group-item-heading">
+							id inscription:
+							<c:out value="${inscription.id_inscription}"></c:out>
+							id test:
+							<c:out value="${inscription.id_test}"></c:out>
+						</h4>
+				</a></li>
+			</c:forEach>
+		</ul>
 </div>
 </body>
 </html>

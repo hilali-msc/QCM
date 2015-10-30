@@ -44,14 +44,18 @@ public class InscriptionTestServlet extends HttpServlet {
 		if (!request.isUserInRole("2")) {
 			response.sendRedirect("/");
 		}
+		InscriptionTestService service = new InscriptionTestService();
 		List<Utilisateur> stagiaires = null;
 		List<Test> listTest = null;
+		List<Inscription_test> listInscription = null;
 		try {
 			listTest = TestService.importerListeTests();
 			stagiaires = UtilisateurService.importerListeStagaire();
+			listInscription = service.getListInscriptions();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		request.setAttribute("inscriptions", listInscription);
 		request.setAttribute("tests", listTest);
 		request.setAttribute("stagiaires", stagiaires);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("inscriptionTest.jsp");

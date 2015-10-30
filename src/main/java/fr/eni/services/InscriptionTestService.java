@@ -52,6 +52,15 @@ public class InscriptionTestService {
 		}
 	}
 	
+	public List<Inscription_test> getListInscriptions () throws SQLException
+	{
+		try {
+			return InscriptionTestDAO.getListInscriptions();
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
+	}
+	
 	public static Inscription_test getInscriptionTestById (int idInscription) throws SQLException
 	{
 		try {

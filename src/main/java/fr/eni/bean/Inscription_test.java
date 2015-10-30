@@ -12,7 +12,25 @@ public class Inscription_test {
 	private int temps_restant;
 	private int nb_incident;
 	private int position_question;
+	private Test test;
+	private Utilisateur user;
 	
+	public Test getTest() {
+		return test;
+	}
+
+	public void setTest(Test test) {
+		this.test = test;
+	}
+
+	public Utilisateur getUser() {
+		return user;
+	}
+
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
+
 	public Inscription_test()
 	{
 		super();
