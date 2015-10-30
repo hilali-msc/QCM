@@ -52,7 +52,7 @@ public class AjouterQuestionServlet extends HttpServlet {
 		
 		try {
 			QuestionService.insert(uneQuestion);
-			response.sendRedirect("themeQuestRep");
+			response.sendRedirect("themeQuestRep?idTheme=" + request.getParameter("idTheme"));
 		} catch (Exception e) {
 			doGet(request, response);
 		}

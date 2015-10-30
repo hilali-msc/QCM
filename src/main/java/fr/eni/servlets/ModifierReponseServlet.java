@@ -1,6 +1,7 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -60,9 +61,20 @@ public class ModifierReponseServlet extends HttpServlet {
 		uneReponse.setId_reponse(Integer.parseInt(request.getParameter("idReponse")));
 		uneReponse.setLibelle(request.getParameter("libelle"));
 		
+		Question question = null;
+		try {
+			question = QuestionService.getQuestion(Integer.parseInt(request.getParameter("question")));
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		try {
 			ReponseService.update(uneReponse);
-			response.sendRedirect("themeQuestRep");
+			response.sendRedirect("themeQuestRep?idTheme=" + String.valueOf(question.getId_theme()) + "&idQuestion=" + request.getParameter("question"));
 		} catch (Exception e) {
 			doGet(request, response);
 		}

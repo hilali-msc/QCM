@@ -3,6 +3,7 @@ package fr.eni.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +43,9 @@ public class PasserTestServlet extends HttpServlet {
 			// TODO Mettre la liste des questions en sessions
 			
 			// TODO Lancer la page de passage de test avec la première question
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("passerTest.jsp");
+			dispatcher.forward(request, response);
 			
 			
 		} catch (Exception e) {

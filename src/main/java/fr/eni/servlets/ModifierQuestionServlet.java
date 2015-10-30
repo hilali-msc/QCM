@@ -62,7 +62,7 @@ public class ModifierQuestionServlet extends HttpServlet {
 		
 		try {
 			QuestionService.update(uneQuestion);
-			response.sendRedirect("themeQuestRep");
+			response.sendRedirect("themeQuestRep?idTheme=" + request.getParameter("theme"));
 		} catch (Exception e) {
 			doGet(request, response);
 		}

@@ -1,6 +1,7 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,9 +51,21 @@ public class AjouterReponseServlet extends HttpServlet {
 		uneReponse.setEst_correct(Boolean.parseBoolean(request.getParameter("estCorrect")));	
 		uneReponse.setId_question(Integer.parseInt(request.getParameter("idQuestion")));
 		
+		Question question = null;
+		
+		try {
+			question = QuestionService.getQuestion(Integer.parseInt(request.getParameter("idQuestion")));
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		try {
 			ReponseService.insert(uneReponse);
-			response.sendRedirect("themeQuestRep");
+			response.sendRedirect("themeQuestRep?idTheme=" + String.valueOf(question.getId_theme()) + "&idQuestion=" + request.getParameter("idQuestion") );
 		} catch (Exception e) {
 			doGet(request, response);
 		}

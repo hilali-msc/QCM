@@ -58,6 +58,7 @@
 		</div>
 	</form>
 	<ul class="list-group">
+			<h3>Liste des inscriptions</h3>
 			<c:forEach var="inscription" items="${inscriptions}">
 				<li class="list-group-item"><a
 					href="<c:url value="passerTest">

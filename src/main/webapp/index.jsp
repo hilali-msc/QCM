@@ -13,6 +13,5 @@
 </head>
 <body class="container">
    <jsp:include page="header.jsp"/>
-<h1>Projet de gestion de QCM</h1>
 </body>
 </html>
