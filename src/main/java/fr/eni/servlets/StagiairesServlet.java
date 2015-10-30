@@ -46,11 +46,12 @@ public class StagiairesServlet extends HttpServlet {
 			{
 				try {
 					promo = PromotionService.rechercheParId(stagiaire.getId_user());
+					stagiaire.setLibellePromo(promo.getLibelle());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-			request.setAttribute("promo", promo);
+
 			request.setAttribute("stagiaires", stagiaires);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("stagiaires.jsp");
 			dispatcher.forward(request, response);

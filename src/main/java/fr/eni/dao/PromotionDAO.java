@@ -51,7 +51,7 @@ public class PromotionDAO {
 		Connection cnx = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String req = "SELECT p.libelle FROM utilisateur u "
+		String req = "SELECT * FROM utilisateur u "
 				+"inner join promotion p on p.id_promo = u.id_promo "
 				+"where id_user = ? ;";
 

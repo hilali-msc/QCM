@@ -39,11 +39,12 @@
 					
 				</h4>
 				<p class="list-group-item-text">
+					Email : 
 					<c:out value="${stagiaire.email}"></c:out>
 				</p>
 				<p class="list-group-item-text">
 					Promo :
-					<c:out value="${promo.libelle}"></c:out>
+					<c:out value="${stagiaire.libellePromo}"></c:out>
 				</p></li>
 		</c:forEach>
 	</ul>

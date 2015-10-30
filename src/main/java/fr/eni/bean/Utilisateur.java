@@ -11,6 +11,15 @@ public class Utilisateur {
 	private String password;
 	private String login;
 	private String email;
+	private String libellePromo;
+
+	public String getLibellePromo() {
+		return libellePromo;
+	}
+
+	public void setLibellePromo(String libellePromo) {
+		this.libellePromo = libellePromo;
+	}
 
 	public Utilisateur(){
 		

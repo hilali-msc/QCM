@@ -66,10 +66,7 @@
        						</c:url>">
 						<span class="pull-right glyphicon glyphicon-menu-right"></span>
 						<h4 class="list-group-item-heading">
-							id inscription:
-							<c:out value="${inscription.id_inscription}"></c:out>
-							id test:
-							<c:out value="${inscription.id_test}"></c:out>
+							<c:out value="${inscription.libelleTest}"></c:out>
 						</h4>
 				</a></li>
 			</c:forEach>

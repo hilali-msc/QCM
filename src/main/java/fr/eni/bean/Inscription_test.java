@@ -14,7 +14,16 @@ public class Inscription_test {
 	private int position_question;
 	private Test test;
 	private Utilisateur user;
+	private String libelleTest;
 	
+	public String getLibelleTest() {
+		return libelleTest;
+	}
+
+	public void setLibelleTest(String libelleTest) {
+		this.libelleTest = libelleTest;
+	}
+
 	public Test getTest() {
 		return test;
 	}
